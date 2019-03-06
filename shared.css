@@ -1,0 +1,126 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+}
+
+.main-header {
+    background-color:  #2ddf5c;
+    width: 100%;
+    padding: 8px 16px;   
+    vertical-align: center; 
+    position: fixed;
+    top: 0;
+}
+
+.main-header  * {
+    display: inline-block;
+    
+}
+
+.main-nav {
+    text-align: right;
+    width: calc(100% - 75px);
+}
+
+
+.main-nav__items {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+.main-nav__item {
+    display: inline-block;
+    margin: 20px;    
+}
+
+.main-nav__item > a {
+    text-decoration: none;
+    color: darkgreen;
+    font-weight: bold;
+}
+
+.main-nav__item > a:hover,
+.main-nav__item > a:active  {
+    color:white;
+    border-bottom: 5px solid white;
+    padding:3px;
+    font-weight: bold;
+}
+
+
+
+.main-header__brand {
+    text-decoration: none;
+    font-weight: bold;
+    color:darkgreen;
+    font-size: 22px;
+}
+
+.main-nav__item--cta a {
+    border-radius: 5px;
+    padding: 5px;
+    color:white;
+    background: red;
+}
+
+.main-nav__item--cta a:hover,
+.main-nav__item--cta a:hover {
+    border: none;
+    color:red;
+    background: white;
+}
+
+
+.button {
+    text-decoration: none;
+    border-radius: 8px;
+    border: 2px solid white;
+    margin: 4px;
+    padding: 4px;
+    font: inherit;
+    font-weight: bold;
+    background-color: darkgreen;
+    color: white;
+    cursor: pointer;
+}
+
+.button:hover,
+.button:active {
+    background-color: white;
+    color: darkgreen;
+}
+
+.main-footer {
+    background-color: black;
+    padding: 32px;
+    margin-top: 16px;
+}
+
+.main-footer__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.main-footer__link {
+    display: inline-block;
+    padding: 4px;
+    margin: 4px;    
+}
+
+.main-footer__link a {
+    text-decoration: none;
+    color: white;
+}
+
+.main-footer__link a:hover,
+.main-footer__link a:active {
+    color: #ccc;
+}
