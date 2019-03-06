@@ -1,0 +1,553 @@
+HTML is to structure the content of the web page.
+CSS is to syle the content of the web page. It can also change the positioning of the elements. 
+
+
+CSS was first introduced in 1996. We refer to this as CSS version 1.
+
+This was the first time you finally got tools to improve the look of your web page.
+
+Now, only two years later, we got CSS version 2. The latest
+
+version of CSS, actually CSS version 3,
+
+is the one this course uses and it's still in development.
+
+Isn't that strange...?
+
+Will there ever be a version 4 at some point in time?
+
+No. We'll never get a CSS version 4 because with CSS version 3, the concept or the approach toward
+
+CSS (towards the development of CSS) changed. Rather than focusing on different versions, they've now
+
+split up CSS into a couple of modules which are organized by the feature they cover.
+
+So, things like modules on coloring text, modules which focus on shadows and modules which focus on
+
+animations. We've got different versions of these modules and new modules and module versions will
+
+be continuously added in the future;
+
+simply to keep up with modern developments and to keep CSS dynamic.
+
+The important takeaway for you is to know that CSS simply keeps evolving.
+
+It still is under active development and we will see new and improved features in the future too; simply
+
+to keep up with the general evolving nature of web development itself.
+
+Basic things:
+
+How to add CSS to HTML ?
+How to set up CSS rules ?
+What are selctors, properties and values.
+What are conflicting styles ?
+
+
+There are mainly 3 ways to add css:
+
+1. Inline:
+
+suppose you have a <p> element, how do you set its background color to blue?
+In inline way you can do it like this: 
+<p style="background: blue"> Hey hi!</p>
+ and you're done.
+
+There are 2 advantages of inline styling, first thing is readability, if you have many nested elements, then the style
+resulted via cascading from the parent element cannot be calculated and hard to understand.
+
+second, it doesn't scale. If you want to change like some 10 properties on a single element, soon it becomes ugly.
+
+2. By writing in style tags in head section.
+
+<head>
+    <style>
+        p {
+            background: blue;
+        }
+    </style>
+</head>
+
+In head section, you can actually include a style section, where you can write the styles.
+syntax is :
+
+    <selector> {
+        ...style rules
+    }
+
+    you open a selector, that is either tag names in html or id's of any html element or a combination of above.
+    you write all the styles that you want to apply.
+
+Down side, Fro above 2 styles, the html file size increases, even if style did not change, and only html content changed,
+every time there is a request for new html, the old style rules still come.
+
+This causes additional loading time.
+
+3. Writing styles in a seperate file with extension .css, and laoding it in HTML page as below:
+
+<head>
+    <link rel="stylesheet" href="<filename>.css" />
+</head>
+
+This way, css files can be cached.
+
+color -> this si some style that changes the color of text in an element.
+font-family -> there are different fonts on how text will look. Ex: are Times, Courier.
+
+if you mention sans-serif as font-family, its actually a special key word, meaning it will default to whatever the browser default
+font setting is.
+
+If it has courier as default setting, then sans-serif will refer to it and so on.
+
+
+so far we used element selectors, but we have different selectors as well..
+
+class selectors:
+ This is a concept associated with css rather than html.
+ You declare a class like below:
+
+ .<class-name> {
+
+ }
+
+ a class always start with '.', now if we mention class="<some-class-name>" in any html tag, that tag will have all the styles
+ defined in <some-class-name> class. You can set a single class to any number of elements, thus declaring a class
+ also encourages reusability of style.
+
+ A element can also have multiple classes.
+
+ ID selectors.
+ An id is a html attribute that is unnique all over the html conent. you assigna a unique value to a css element by help of this
+ id attribute.
+
+ now if you want to apply css style to some element having particular id value, you declare the css as below:
+
+ #<id-vaue> {
+     ...styles
+ }
+  A note on id, you can actually append at the end of the url #<id-name> and you can directly jump over there after loading the page.
+
+ Attribute selectors:
+
+ Every element has some attributes that add some meta dat to html element or modify the behavior of element.
+  for example disabled is an attribute that disabled the field. commonly used on input.
+ ex: <button disabled></button>, here disabled is an attribute.
+
+ if you want to apply css style to all the elements having a particular attribute, then you declare css as follows :
+
+ [<attribute-name>] {
+     ...style
+ }
+
+ cascading styles and specificity:
+
+ AS we already side, we can assign multiple classes to same element,
+ then if both css classes has some same style property.. which would get applied first, common sense is that, whatever comes
+ last would take into effect and that is right.
+
+ Even in the external style sheets, if 2 same selectors were defined styles, the last selector styles would override the first 
+ selector.
+
+ One more thing, 
+
+ In order of priority the below styles are applied:
+
+ Inline styles,
+ #ID selectors,
+ .class, :pseudo-class and [attribute] selectors,
+ <Tag> and ::pseudo-element selectors.
+
+ even if we dont mention some styles, there are automatically present, example.. h1 has by default { display: block } style.
+ These will be first applied adn then overriden as mentioned by the above selectors.
+
+ Intro to combinators:
+
+ now if you want to apply all h1 elements inside a specific id, you can do as below:
+
+ #<id-name> h1 {
+     ...styles
+ }
+
+ now if you already have a generic h1 selector, still all the h1 elements inside that specific id element will all have this 
+ special h1 selector. 
+
+ So that rule will dominate which has more information on how to select the elements over a vast collection of elements present in the 
+ body tag.
+
+ Here rather than generic selector, h1 , <id-name> h1 is a mroe specific selector and has more information and so it will dominate.
+
+
+ #ID selectors,
+ .class, :pseudo-class and [attribute] selectors,
+ <Tag> and ::pseudo-element selectors
+
+ the specificity is used to resolve conflicts when there are multiple styles applied to same element.
+
+Combinators in general will allow you to specify much more information on how to select elements and be more clear about our rules,
+there are 4 types of combinators:
+
++ Adjacent sibling: 
+    ex syntax: h1 + p => this implies that whenever a pair comes like p immediately follwing h1 comes up, or that whenever p is such
+    that it is immediately adjacent to h1, then the rules mentioned in that style will be applied on every such p tag or element.
+    Remember that both have to be in the same level, not a parent child relation ship. I.e, they share the same parent.
+    you could use multiple adjacent rule, like h1 + p + a, that says, a should follow p and that should immediately follow h1
+    and then only this rule will be applied to that 'a' element.
+
+
+~ General sibling : h1 ~ p, is same as that of above except that, p need not immediately follow h1, it is enough that they
+  both share the same parent.
+
+
+> child : h1 > p, any p tag that is a direct child(not just child) to h1 tag, then the style will be applied. IT can also be applied
+to multiple like h1 > p > a.
+
+
+'space' descendant: ex: h1 p, here all the p elements which are childs of h1 will get the style, it doesnt matter, if they are 
+direct child or not.
+
+ How to know which has how much specificity, or in general how to resolve specificity ?
+
+3 number system 
+#-#-#
+
+first position is filled with 1 if a id selector acts on that element else 0,
+second position should be filled with 1 if a class selector acts on that element,
+third position should be filled with 1 if a tag selector  or ::pseudo-element selector.
+
+if there are 2 class selectors acting, fill the second position with 2, and so on for all styles.
+the first position has highest precedence and the last position has lowest precedence.
+
+ex: p .<some-class>  has specificity 0-1-1
+and #<some-id> p has specificity 1-0-1,
+and li+li+li has specificity 0-0-3
+
+so if the above 3 styles apply on some element in html, then the one with specificity 1-0-1 wins.
+
+***** Also if both has same specificity like 0-1-1 and 0-1-1, then that style will win which is last present in the stylesheet.
+becuase it will override the already applied one.
+
+Points to remember:
+PArent styles are generally inherited.
+Multiple rules can apply to one element.
+Specificity resolves "multiple rules" conflict.
+Inheritance defaults can be changed.
+
+2. Working with Boxes:
+========================
+
+Every element in HTML is treated as a box in CSS. Each element has 3 layers: Padding, Border, Margin.
+
+Every element will fall into three categories.
+Block element, Inline-Block, Inline as we know.
+
+When two block elements are present, lets say p1 and p2 representing two paragraph elements.
+If p1 has margin 20px and p2 has margin 20px, then margin-bottom and margin-top of both p1 and p2 respectively will be merged into
+one.
+This is called margin-collapsing. So due to the concept of margin-collapsing distance netween the 2 block elements will be 
+20px isntead of 40 px.
+
+If p1 has 21 px and p2 has 20 px, then the distance between the 2 elements will be 21px.
+So the bigger margin wins.
+
+You can dive deeply into it with the help of the following awesome article: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing
+
+There, three base cases are described:
+
+Adjacent siblings which both have margins
+A parent which holds one or more child elements where the first and/ or last (or the only) child has margins
+An element without content, padding, border and height
+Let's explore these cases:
+
+1. Adjacent Siblings
+
+In this case, the first element might have a margin of 10px  (on all sides let's say) and the second one has 5px  (or 20px  - the values don't matter).
+
+CSS will collapse the margins and only add the bigger one between the elements. So if we got margins of 10px  and 5px , a 10px  margin would be added between the elements?
+
+2. A parent with children that have a margin
+
+To be precise, the first and/ or last or the only child has to have margins (top and/ or bottom). In that case, the parent elements margin will collapse with the child element(s)' margins. Again, the bigger margin wins and will be applied to the parent element.
+
+If the parent element has padding, inline content (other than the child elements) or a border, this behavior should not occur, the child margin will instead be added to the content of the wrapping parent element.
+
+3. An empty element with margins
+
+This case probably doesn't occur that often but if you got an element with no content, no padding, no border and no height, then the top and bottom margin will be merged into one single margin. Again, the bigger one wins.
+
+Seperate proprties and Short-hand proeprties:
+Some CSS style properties have some shorthand notations:
+
+for example: Border and margin.
+
+Border properties :
+
+border-width: 2px;
+border-style: dashed | solid;
+border-color: black;
+
+Shorthand notation for the above 3 props:
+
+border: 2px solid black;
+
+Same with Margin:
+
+Margin properties:
+
+margin-top: 5px;
+margin-right: 5px:
+margin-bottom: 5px;
+margin-left: 5px;
+
+Different shorthand notations for the above:
+
+margin: 5px; /* 5px on all sides. */
+margin: 5px 5px; /* 5px on top and bottom <space> 5px on right and left */
+margin: 5px 5px 5px 5px; /* top right bottom left */
+
+if you want to set all sides of margin to 5px except the top which you want to set it to 7px, you acn do it by the follwing.
+
+margin: 5px;
+margin-top: 7px; /* since it is parsed the last, so this style will be applied. */
+
+We can also set height and width on the block and inline-block elements.
+
+By default, block elements occupy all the available width.
+
+height is calculated in a weird way when we use % units.
+
+First HTML calculates the height as big as it content is, thats it. So if you have 3 lines of text, then it will not occupy
+the whole body of browser, but jsut the space that 3 lines will occupy.
+
+So if a p(block) element has one line of text, with no margin and padding, then it will occupy only 1 line of space.
+Even if you explicitly mention, height: 100%, it has no effect. It will still occupy 1 line of space.
+Now if you set HTML height has some 700px, then that p elment will also occupy 700px.
+Else, if you hardcode it to use 700 px for p element again it will occupy 700 px height.
+
+So generally all elements will occupy only that space, which it contents allow it to, unless you use the units px.
+Width, but can reduce its width with the use of %. It will occupy the whole available width of browser by default, and so the width
+whether we use % or px units, works as expected.
+
+Now the height is always calculated, excluded of padding, border and margin.
+If you want to include padding and border also in height and width calculation, then we have to set the css style,
+box-sizing: border-box;
+The default value of the above is content-box;
+
+There is no way to include, margin also in the width and height calculation, so if you set widht: 100% and set some margin without
+border-box calculation, then the border and padding disappears on the right side.
+
+Now if you set border-box property to body element, it will not directly affect all the child elements..
+It will just set the style to body. It will just override body's default value. The rest block elements height and width 
+calcualtion will be again, conent-box-sizing. We use css for the same reason, to specify a specific style or to override the browser defaults. 
+
+Becuase for every element, browser sets some default styles and border-box is one among them. For all block elements, it will set to content-box style for box-sizing. Some styles are inherited from its body.
+We also use css to override the inherited values as well.
+
+Now that broswer sets default every block category elemetn box-sizing to content-box, we got to set it to border-box manually.
+
+* {
+    box-sizing: border-box;
+}
+
+This way we will now override all the broswer defaults.
+
+Also, every inline-block element will have default values for margin and padding added by browser. And to reset it manually add
+margin:0 and padding: 0;
+
+Weird behavior of inline:
+When there are two inline block elements, then in html page code, even if there is new line character, that also takes space and can 
+sometimes change style if elements arrangement is arranged such that, each pixel is counted. Because we normally tend to forget
+the space occupied by this new line characters.
+
+One thing we can do is add comments connecting to the inline block elements like below:
+
+<p>
+--</p><!-- this comment is remving space/new-line character yet makes legible by seperating elements into  their own new lines in code text.
+--><p>
+...
+</p>
+
+
+else dont forget to add the space taken by this character also.
+
+Pseudo Elements and Pseudo Classes:
+
+Pseudo class -> syntax -> :<class-name> -> defines the style of a special state of an element.
+
+ex: -> a:hover, div:hover
+
+Pseudo elements -> syntax -> ::<element-name> defines the style of a specific part of an element.
+
+ex: p::first-line {
+    color: red;
+}
+
+Makes all first lines of paragraph text red.
+
+Grouping selectors:
+
+if you have two styles like below,
+
+.main-nav__item > a:hover {
+    color:white;
+}
+
+.main-nav__item > a:active {
+    color:white;
+}
+
+you can actually group them like below
+
+.main-nav__item > a:hover,
+.main-nav__item > a:active  {
+    color:white;
+}
+
+the 2 .main-nav__item > a:hover, .main-nav__item > a:active are not combinators and are not related in any way,
+just that they share the same declaration set.
+
+What happens when we apply two classes on a same element ?
+
+Then that class declaration which appears last in the css code file wins.
+
+So it doesn't matter in which order you use them while applying, but it does matter in which order you declare the definition
+of the classes.
+
+special mention - syntax :
+
+<Tag>.<Class_Name>
+
+selects all that specific <Tag> with the mentioned <Class-Name>.
+
+CSS Class selectors vs ID selectors:
+====================================
+
+CSS Class should be our first pick. They are reusable, allows you to "mark" and name things for styling purposes.
+Acts as an identifier for particular style. Even if you use that class only once, its ok to declare it and using a class is rarely 
+wrong.
+
+ID selectors on the other hand, are used to style for specific purposes..They also indicate non-css meaning e.g. on page link..
+you can got to specific element by appending that id in url. So ID plays a dual role, where as classes are singly dedicated to 
+styling purposes and hence use classes for styling purposes.
+
+!important:
+
+This is mentioned to apply a style attribute, overriding all specificity rules.
+
+syntax: 
+
+p {
+    color: #ccc !important; /* This will apply regardless of any css rule precedence */
+    background: white; 
+}
+
+:not pseudo selector:
+
+ex: :not(p) {
+    color: red;
+}
+
+selects all tags that is not p and applies color red.
+
+a:not( .active) {
+    color: blue;
+}
+
+selects all anchor tags that do not have class active and applies color blue.
+
+a :not(.active) {
+    color: blue;
+}
+
+selects all child elements of all anchor tags that do not have class active.
+
+Can I use.com tells u which features of css and javascript are supported by broswers. It also mentions partial support and
+total reach.
+
+
+See buttons have lots of default options, more over the text present in it sometimes can be lot different from what we have.
+Generally to style buttons we declare a "button" class that has all the basic look of a button. Thne if you want to modify 
+any button you kust declare a modifier class for existing button class.
+
+Also, Hover effects look good when you use contrast color complement technique.
+That means, if button background color is green and text color is white, while hovering it.. reverse it, make text color green
+and background color white. But make the border color consistent across the hover effects to show a clear presence of button.
+Also to make the buttom mroe standout so that it looks like a clickable, you have to contrast its color even more.
+For example if general background color around button is green, then make the buttons background color as darkgreen.
+
+Standout technique is the same. If you have 2 components and you want to highlight one among the two.
+Set the bg color of non-important one to light-green(example) and important one to green color. Also set the box offset.
+This light-normal color combination, helps you to stand out.
+Also good color for box-offset is gray color with transperency 0.5.
+
+Also while designing card like structures use text-alighment to center. Also set cards vertical alignment to center.
+
+Even for every list item, you can mention a class, this is fast rendering and celan approach. Probably sometimes little extra 
+text. This way employ class based design as much as you can.
+
+By default some browsers add a blue border when an element is focussed.
+If you want to remove it, then set out-line proeprty of it to none. That too under :focus pseudo class.
+
+First things first;
+
+When you remove the list style, you autmoatically set their margin to 0 and padding to 0.
+Also set vertical-align to be center.
+
+Also when you set display to inline-block for any element, make sure to mention the width accordingly.
+If there are 3 inline elements and you want to position them side by side, set each of its width to 30%;
+
+If you want to change a div to round card, 
+set its height and width to same value, also set border-radius to 50%.
+
+An old lesson, setting the margin to auto sets the element to sit at the center of the parent element.
+
+Also, we can actually set on UL tag, text-align property to center and get the text elements aligned to center.
+
+Always set display to block while dealing with inline elements as block elements.
+
+If you use float property on any block element, then the below block element if any exists will wrap around the floated element.
+To fix this, an empty div element is usually placed below the element to be floated and will be applied style property, clear: both;
+
+Positioning:
+============
+
+By default all the elements in the HTML have position proeprty set to static.
+
+We can position the elements anywhere in 8 directions (TOP, BOTTOM, RIGHT, LEFT, TOP-LEFT..) from the current element postiion.
+
+Position property values:
+
+Fixed:
+
+The fixed places the element relative to the viewport. Change position property to absolute, and apply any of the direction flow 
+in units px or %?.
+
+The element will be placed there. The elements below it occupy the space of this fixed element :P. this fixed element floats in air.
+
+Also, by applying this 2 preoprties the element will become inline-block element.
+Whether it is a block or inline element, it becomes - inline-block element.
+By becoming inline-block element, its initial width if not set, will wrap its width size according to content.
+
+Also, to set a background image, we can actually declare an empty div element. Via css we can set its background to an image.
+Although its widht and height is set to 100% it would not take any effect. if you manually set height in weight in px, it will 
+occupy space as block element. So to become truly background z-index should be applied. For this to take in effect, the element
+should also have the position property set to a value other thna default value 'static'.
+
+By default z-index value will be 0/auto. so if you set any element value greater than 0 or auto value, it will be top of that 
+elements where its positioned.
+
+if two different element have same z-index value then that is declared last in the html element will be on top. by default all z-index
+set elemetns will have position set to different value other than 'static', so they kind of float in air. so if two elements
+position is overlapped and they have the same z-index value, that element will be on top which cones last in html code file.
+
+lastly z index value can range from any negative number to any positive number range.
+
+
+
+
+
+
+
+
+
+
+
