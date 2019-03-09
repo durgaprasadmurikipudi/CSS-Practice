@@ -517,6 +517,7 @@ We can position the elements anywhere in 8 directions (TOP, BOTTOM, RIGHT, LEFT,
 Position property values:
 
 Fixed:
+------
 
 The fixed places the element relative to the viewport. Change position property to absolute, and apply any of the direction flow 
 in units px or %?.
@@ -540,6 +541,370 @@ set elemetns will have position set to different value other than 'static', so t
 position is overlapped and they have the same z-index value, that element will be on top which cones last in html code file.
 
 lastly z index value can range from any negative number to any positive number range.
+
+Absolute:
+---------
+
+Absolute and Fixed both behave in the same way. They both take the elements out of the document flow and position the elements
+in the position parameters specified.
+
+The key difference is with what this position parameters are calculated.., for fixed it is always the viewport and for absolute its the
+nearest enclosing parent element which has the position property value set to a value different than 'static'. If none exists
+then its viewport again.
+
+lets discuss a problem scenario,
+ there are 3 div elements each are like atleast 240 px in height.(just mentioning height to eastablish the fact that they occupy a 
+ considerable space. ) Now if you want to keep a badge on first div element to mention its recommended or to keep some
+ emphasis on it. so you wanna keep that badge on top-right corner.. Then how would you achieve it.? Even under responsive design ?
+
+One easy way to achieve is using position properties. 
+
+Now if you apply position - fixed  to  badge, it will move along with the scrolling.
+if you apply absolute such that its positioning is set w.r.t to target div element, it would work only when this div elements position
+property is set only to different value other than static.
+
+If we apply fixed or absolute to div elements this would all be remvoed out of documetn flow and come on top of one another..
+so how ?
+
+Keep positioning property 'relative' to those div elements, now just apply position property 'absolute' to badge div element and keep
+top:0, right: 0 in its properties.
+
+It will happily set its position in first div element in top-right corner and our desired result would be achieved.
+
+Actually if we have a haeader in the same page and it is positioned with the 'fixed' property then, it will be overriden by this 3
+div elements as you scroll, to fix it, put z-index: 1 for header.
+
+Relative:
+---------
+
+Relatively positioned elements are not taken out of the document flow., and if you mention top or left or son on.. on it, then it will
+move respectively to its curent position, the space left by it will not be occupied by any other below elements. You can even make 
+it go out of the current enclosing element.
+
+Also, you can make it hidden as soon as the element move out of the enclosing parent elment by adding property to parent,
+overflow: hidden;
+
+But if your parent is body element, you have to add it in both HTML element and body element , to make it work.
+
+if you just declare like this 
+body {
+    overflow: hidden;
+}
+
+it will be simply be passed into html element.
+but if you declare in both html and boyd, the declaration stays in the body as html already has it and thus works.
+Thisi s the default behaviour of css and nothing can be done except declaring in both places.
+
+Sticky:
+-------
+
+The sticky position along with some property, top:20 or any other, will behave like a relative element at the beginning and then,
+behaves likes a fixed positioned elemetn as soon as the element when scrolled is at distance 20px from the top or less w.r.t to the viewport. Tt will
+move along the scrolling till its parent element is fully scrolled off and once scrolled off or top:20 property (or any other direction property) you set is not satisfied, it will move back to its original position liek a relatively positioned element.
+
+The top or any other direction property that is set will always work w.r.t to Viewport.
+
+Stacking context:
+-----------------
+
+lets say we have 3 div elements, with ids div1, div2 and div3 respectively.
+Now also lets say we have 3 other div elements in div2 as well with id's div21, div22, div23.
+
+Then, if all the position property is fixed means, div 3 will be on top of div2 and di2 will be on top of d1.
+Set d2 z index as 100, then it will be on top of all divs.
+Now if you set div3 z-index as 1000, obviously it will be on top of them.
+but set d21 z index to be 10000, still it wont surpass div3, since its parent z-index is only 100. this is called stacking context.
+
+Stacking context referes to z-index behaviour among siblings and its children.
+
+children can never suprass its enclosing parent through z-index. Neither can go beneath.
+
+Background-size property w.r.t to Images:
+=========================================
+
+Background-size: 
+----------------
+This can be mention in terms of pixels and it will be occuping that space alone.
+If you mention only one value in px, it will then apply it to widht and height will be adjusted.
+If you mention 2 values in px, then width and height will respectively take that values in px.
+If necessary iamge will be coerced or zoomed in.
+
+If you mention background-size in % and say 100% for both width and height, it will take that image part to fill the container,
+if its too big, or zoom out if its smaller than the container. 
+simply putting value 'cover' also does that.
+
+A value of 'contain' acts in when the image is too big and sets its aspect ratio such that it will be smaller than the container
+and if possible as big as the container ?
+
+Background-repeat: 
+------------------
+no-repeat, repeat-x and repeat-y. If either the image is small or made small by background-size repeat property,
+then it could be made to repeat or no repeat. repeat-x and repeat-y are values to make it repeat along particular axis.
+
+background-position: 
+--------------------
+This is how you can crop the image..
+A simple value of center, displays the central part of image.
+Accepted values are : 
+left top -display starting from left and top along x-axis and y-axis respectively.
+left center - display starting from left and center along x-axis and y-axis respectively.
+left bottom - and so on..
+right top
+right center
+right bottom
+center top
+center center
+center bottom
+
+If you only specify one keyword, the other value will be "center"
+
+Also, you can mention the above values much more fluidly in %
+
+A value of 10% 10% means, start from left - 10% and top 10%, means about 10% of the full image from left will be cropped and 
+10% from top of full image will be cropped, and then it starts covering the whole container. if it fits well and good, else
+the remaining parts will all be cropped.
+
+Thus way you can mention starting from left and top, how much if excess image should be cropped. If its fits no cropping, if it doesn't fit happy cropping!
+
+if you mention value 100% from left, all the right part will be displayed in the container, and excessive width occupied by image will be cropped only from the left side.
+
+Also you can mix in left and % values like below:
+background-position: left 50% bottom 50%;
+so 50% of left to be cropped if any excess exists and same with the bottom.
+
+But this behaves differently when you mention this properties value in px. If you mention the value 10px and 20px, then it will move the image along the x-axis by 10px and along the y-axis by 20px.
+
+Setting up an icon:
+-------------------
+
+Now by default image occupies whatever height it can regardless of the container it is present.
+So if you wanna set the height or width of the image such that it is contained within the container, you hav to explicitly 
+mention the height: 100% on the image to occupy the whole available heigh of container. Images aspect ratio is by default adjsted by browser as soon as you change its height or width. i.e, if its height is adjusted then the width will automatically get adjusted. If its width is adjusted its height will autmoatically be adjsuted.
+
+Now if the image is present in an inline element, make it inline-block, else by default image will regain its to original height and width. So to fix it make it inline-block, adjsut its height and width as wanted, then set the image height to 100% to make it
+occupy only containers height. Width as expected will be automatically gets adjusted.
+
+To make the images and text, side by side: make both div's inline - blocks, adjust their width such that they cocupy the container width and also set vertical-align : middle, such that both text appears at the mid.
+
+Also make sure that vertical align-top for the image alone if you see any whitespace for image at the bottom, or jsut make the image alone a block element to make the whtiespace at the bottom disappear.
+
+Linear-gradient:
+----------------
+
+To just display a rainbow of colors..
+
+syntax:
+
+background-image: linear-gradient(180deg, red, blue, ... /*as many colors as you want*/);
+
+background-image: linear-gradient(to bottom/top/ left bottom/ left top, red, blue, ... /*as many colors as you want*/);
+.. mentioning from which direction this should start..
+
+background-image: linear-gradient(to bottom/top/ left bottom/ left top, red, blue, rgba(0,0,0,0.5));
+can even use rgba colors..
+
+background-image: linear-gradient(to bottom/top/ left bottom/ left top, red, transparent);
+can take value transparent
+
+background-image: linear-gradient(to bottom/top/ left bottom/ left top, red 60%, blue, rgba(0,0,0,0.5));
+can mention which color should occupy the majority space. or we can direct how much each color should occupy.
+
+There is also radial-gradient:
+
+radial-gradient(circle/ellipse at top [left]/ bottom/ 20% 50%/.., );
+
+Stacking multiple backgrounds:
+-----------------------------
+
+Using the background shorthand proeprty, each aprameter to it will be a backgorund.
+ex: background: linear-gradient(to top, rgba(150,150,150,0.6), transparent), url(./background.jpg) left 10% bottom 20% no-repeat boder-box;
+
+Now from bottom to top there will be a thin layer of color mentioned in linear-gradient and then thei mage will be visible under
+its influence.
+
+Filters:
+--------
+
+Adding gray scale, increasing brightness and contrast of an Image and so on..
+
+To make an image compeltely greyish , try it its awesome..
+
+filter: grayscale(100%); add it to the class that loads background image.
+
+Also, padding on a fixed size elements reduces the space occupied by elements inside it.
+
+Units:
+======
+
+Whats wrong with using pixels.?
+
+See if you mention 20px font size for a paragraph, then if the user increases zoom size in broswer for more readability, then that text doenot get zoomed in which is a problem. If you basically leave the font size decided by broswer, by using broswer defaults,
+then you dont have much a choice..
+
+Units present in CSS:
+
+pixels: px
+
+percentages: %
+
+root em: rem
+
+em : em
+
+viewport height: vh
+
+viewport width: vw
+
+Which properties mostly use units, in box-model ,they are height, width, margin, padding, border, when you use position property.. then top, bottom, left, right also comes into picture.
+
+3 categories :
+==============
+
+Absolute length :
+-----------------
+These basically ignore user settigns like if they oincrease the font etc..
+
+The units belong to these are px, cm, mm..
+
+Viewpot length:
+---------------
+Adjust to current viewport.
+
+most popular units are vh, vw, vmin, vmax..
+
+Font-relative lengths:
+-----------------------
+
+Adjust to default font size mentioned by browser.
+
+Most popular units are : rem, em..
+
+% is altogehter a different category, we will dive into it more in latter part..
+
+When we use position property fixed for an element, its parent element is viewport.
+
+Also, when using position property absolute, and you use % unit, then it will refer to the enclosing nearest parent element under the condition that its position property is set to a different value that 'static'.
+How much of length will it refer ? the content + padding of the parent. If it has no parent such, then it will be viewport width.
+
+When position property is set to 'static', or 'relative'.., then its parent is the closest enclosing block level element.
+Even it has enclosing element - an inline block then, it will still derive its width from the closest enclosing block element.
+The width of the content occupied by the enclosing block element.
+
+By default for an empty div element with property height 100% will not let it occupy the full screen if its position property is set to 'static' or 'relative'.
+
+For that to occur, a parent element should the explicit height defined either in % or pixels. Else it will be 0, as the height is dynamically calculated after the DOM is rendered. And while this element is parsed as it has no data, it will have height 0.
+
+So to summarise, for statc/relative elements for height: 1005 to work, make sure allthe ancestors have height value declared.
+For position and fixed, this is not necessary and also if you use vw or vh or px units, heigth will work again as expected.
+
+Margin collapsing w.r.t to Positioning concept:
+-----------------------------------------------
+
+ Lets say you positioned an  div with notning but a background having gray scale of 50%, you pisitioned it above all the elemetns lets say.
+
+Unless you mention the top/bottom/left/right explicitly.. by default it would not cover all the available width and height.
+
+Although these fixed and absolute elements have a higher z-index, the margin-collapsing phenomenon would still occur and the margin of the element directly below it and the current element's margin is taken and the one which has highest margin wins, and that will be respected by both this fixed postion-fixed element and the element directly below it.
+
+since positioend elements can be placed anywhere, when top, bottom, left, rigth properties are mentioned, this margin and margin-collapsing is altogehter ignored.
+
+Relative - z-index appearing scenario: 
+--------------------------------------
+Z-index by defautl appears for Fixed, Absolute, Sticky and would appear for relative only when its moved some what from its current position.
+
+Syntactically, a relatively element acquires a positive z-index value from browser only when some one or some or all the  properties like top/bottom/left/right are mentioned. 
+
+Max-width & min-width:
+----------------------
+Define this properties on a element, like min-width: 250px, then the element size will never decrease than 250px. If viewed on a screen less than 250 px, then the element will be cropped from layout of the same element with base width 250px and will be 
+displayed whatever that gets perfectly fit after cropping.
+
+Same with max-width.
+
+These properties should always be used in conjunction with width proeprty or height property.
+
+REM & EM:
+---------
+
+A basic em unit is 16 pixels - accordign to gChrome basic settings,
+
+now if the div element font-size if is declared to have 1.2 em, then the text inside will 19.2px size.
+Now in the same div element, if there is anotehr h1 element and has font size 2em, then its font size would be 38.4px rather than 32px, this is becuase of the use of em. And so the use of em in nested elements will soon enough results in a mess and so it should be used judiciously. Better use it only for child elements and dont nest it much.
+
+Rather if you use rem at both places, then div font size will 19.2 px and h1 element will be 32px as rem wil straight away will refer the root size always. Also rem is recently introduced.. but browser size is decent. 
+
+So basically maintaing the font-sizes in rem usually helps in user accesibility and consistently increases the text over present in all elements as user zooms in or zooms out of the broswer.
+
+if you use it in padding amd margin's also, then pretty much there will not be any breakage in the generaly style of the website as the user zooms in or zooms out. But height and width calcualtion need not be done in this font-size units for obvious reasons.
+
+vh, vw -- vmin, vmax:
+---------------------
+
+vh refers to viewport height.
+100 vh means 100% of viewport height and 1 vh - only 1%.
+
+vw refers to viewport weight.
+
+vmin - refers to minimum of viewport height and viewport weight. ( or min of current browser height and width)
+
+
+vmax - refers to max of viewport height and viewport weight. ( or max of current browser height and width).
+
+sometimes usage of vw or vh can sometiems display scroll bars in wondows machines and you can actually hide thm with css.
+After adding vw , you probably saw that the scrollbars appeared in case you are working on Windows. This happens as using vw  on Windows does not include the scrollbars - vw: 100  is  equal to 100% of the viewport width + the scrollbars. On the Mac this is not an issue, but when using Windows it is as the scrollbars are displayed by default.
+
+In case you don't want to display these scrollbars, you can use one of these solutions:
+
+- Use width: 100%  instead of vw: 100
+
+- Add overflow-x: hidden;  to the body selector in the shared.css file to hide the horizontal scrollbar (or overflow-y: hidden  to hide the vertical scrollbar)
+
+Alternatively you could also use the ::-webkit-scrollbar pseudo element. Simply add the following code to the shared.css file:
+
+body: :-webkit-scrollbar {
+    width: 0
+}
+To make sure this works correctly on different browsers, you have to add additional code to it. This blog post
+https://blogs.msdn.microsoft.com/kurlak/2013/11/03/hiding-vertical-scrollbars-with-pure-css-in-chrome-ie-6-firefox-opera-and-safari/
+
+ nicely summarizes all the code needed right here.
+
+Make sure to follow these approaches in case you don't want to display the scrollbars on Windows machines.
+
+Choosing the right unit:
+------------------------
+
+Font-size: Rem, em => child only.
+padding, margin: rem;
+border: px;
+width & height: % in general, but for a specific case to do with viewport, then vw and vh.
+top, bottom, left, right - %.
+
+Also, using auto can center elements only for block/inline-block elements which already have been assigned some width.
+
+Auto is also a measurement.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

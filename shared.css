@@ -9,11 +9,11 @@ body {
 
 .main-header {
     background-color:  #2ddf5c;
-    width: 100%;
-    padding: 8px 16px;   
+    width: 100%;  
     vertical-align: center; 
     position: fixed;
     top: 0;
+    z-index: 1;
 }
 
 .main-header  * {
@@ -60,6 +60,12 @@ body {
     font-weight: bold;
     color:darkgreen;
     font-size: 22px;
+    display: inline-block;
+    height: 40px;
+}
+
+.main-header__brand img {
+    height: 100%;
 }
 
 .main-nav__item--cta a {
