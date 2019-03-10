@@ -884,6 +884,54 @@ Also, using auto can center elements only for block/inline-block elements which 
 
 Auto is also a measurement.
 
+Working with javascript:
+========================
+
+var backdrop = document.querySelector('.backdrop');
+/* queryselector just returns the first matching query result */
+var modal = document.querySelector('.modal');
+
+var planSelectedButtons = document.querySelectorAll('.plan .button');
+/* queryselectorAll just returns all the matching query results */
+
+for( var i = 0; i < planSelectedButtons.length; i++)
+{
+    planSelectedButtons[i].addEventListener('click', function() {
+        /* registering an event listener for each dom element, for click event */
+        backdrop.style.display = 'block';
+        /* by using dom object style proeprty, we can set all the css properties of an object */
+        modal.style.display = 'block'; 
+    });
+}
+
+
+Another way to set display to block is you can actually a declare another class, which has one
+property - display, taht is set to block.
+Now if we add this class, when hamburger option is clicked, happily it will be displayed. To remove the display, we just remove the class.
+
+Code bocks for the same--
+
+modal.classList.add('<class-name>');
+
+modal.classList.remove('<class-name>');
+
+Generally, when chaning the properties in JS, you can know the property name for the same in DOM object like this,
+
+if its font-size, then hypen will be removed and the follwing letter be capitalised.
+
+so in DOM object it's name would be fontSize.
+
+if its a word, then it will be as is as mentioned in css.
+
+also on another hand, you can use like this also, modal.style['font-size], to chaneg the font size
+property via dom object.
+
+
+
+
+
+
+
 
 
 
