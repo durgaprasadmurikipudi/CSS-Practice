@@ -9,7 +9,7 @@
     background-clip: border-box;
     padding: 0.6rem;
     width: 100vw;
-    height:40vh;
+    height:33vh;
     margin-top: 4rem;
     position: relative;
 }
@@ -28,28 +28,25 @@
 #product-overview h1 {
     color: white;
     font-family: 'Anton', sans-serif;
+    font-size: 1.6rem;
 }
 
-.plan__list {
-    width: 80%;
-    text-align: center;
-    margin: auto;
-}
+
 
 .plan {
-    display: inline-block;
-    width: 30%;
+    width: 100%;
     margin: 0.5rem;
     padding: 1rem;
     text-align: center;
     background-color: lightgreen;
-    vertical-align: center;
+    min-width: 13rem;
+    max-width: 25rem;
+    margin: auto;
 }
 
 .plan--highlighted {
     color:white;
-    background-color: green;
-    box-shadow: 4px 4px 4px 4px rgba(0,0,0,0.5);
+    background-color: green;    
 }
 
 .plan__annotation {
@@ -106,11 +103,7 @@
 }
 
 
-.key-feature {
-    display: inline-block;   
-    width: 30%; 
-    vertical-align: top;
-}
+
 
 .key-feature__description {
     margin: 0.7rem;
@@ -176,3 +169,36 @@
     background: #ff5454;
     border-color: #ff5454;
   }
+
+@media (min-width: 40rem) {
+    #product-overview {
+        height: 50vh;
+    }
+
+    #product-overview h1 { 
+        font-size: 2rem;
+    }
+
+    .plan {
+        width: 30%;
+        vertical-align: center;
+        display: inline-block;
+    }
+
+    .plan__list {
+        width: 100%;
+        text-align: center;
+        margin: auto;
+    }
+
+    .plan--highlighted {
+        box-shadow: 4px 4px 4px 4px rgba(0,0,0,0.5);
+    }
+
+    .key-feature {
+        display: inline-block;   
+        width: 30%; 
+        vertical-align: top;
+    }
+
+}

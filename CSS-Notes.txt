@@ -923,8 +923,50 @@ so in DOM object it's name would be fontSize.
 
 if its a word, then it will be as is as mentioned in css.
 
-also on another hand, you can use like this also, modal.style['font-size], to chaneg the font size
+also on another hand, you can use like this also, modal.style['font-size], to change the font size
 property via dom object.
+
+Responsive Web Design:
+----------------------
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+Generally, mobile phones have high pixel density and so it is as same as of browsers pixels count, but the actual width is calculated indifferently and browsers can recognise the actual width. This cannot be done using pixel count as pixel density is more in mobile phones it's count could be matching a larger device. The above meta tag, will remove that and makes use of the width, rather than pixel count and thus helps in rendering websites responsively.
+
+Viewport just converts the mobile pixel density based on available devices meta data and the pixel ratio the device uses.
+
+So, here's the deal, now you have 3 inline-block elemetns to be displayed in side-by-side layout in desktop version and in block style as soon as it moves to mobile version.
+
+Lets say you defined mobile version at 640px, and that so this inline block elements become block elements when the desktop version reaches 640px. but if its at 700 px, the elements might still cringe and that can cause text overflow in each div element.
+
+So you want only 2 elements to occupy only when there is not enough space .. out of three. How can we acheive that?
+
+Simply put min-width property on that div element, now see when the min width till the text overflow doesnt occur, set that as minwidth for each element, so when the elements reach less than min-width threshold, their width automatically increases.
+
+Becuase of this, element doesnt adjust, an inline-block style pushes one element to down and the rest will aligned.
+
+So what happened actually. While we want to position elements as inline-block elements and wanted those 3 elements to be aligned
+along each other side, we set their width to 30%.
+
+As 30% is a relative value, when the browser width is decreasing, these elements are cringing and splling the text over, but 
+still each occupying the 30% of the available width. So they are reducing their width according to the browser and so the inline-block element nature still kicks in, thinking the place is available for 3 elements and places these elements in the same row.
+
+But with min-width, once the min-width threshold is reached, the element widtg doesnt decrease and the inline block style pushes one down thinking no space available for 3 elements.
+
+Logical operators in media queries:
+
+&& ->
+
+@media (min-width: 40rem) and (min-height: 60rem) {
+    ...
+}
+
+|| -> 
+
+@media (min-width: 40rem), (min-height: 60rem) {
+    ...
+}
+
 
 
 

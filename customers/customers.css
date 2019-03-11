@@ -1,6 +1,7 @@
 .testimonial {
     font-size: 1.2rem;
     margin: 3rem 0;
+    max-width: 1500px;
   }
   
   .testimonial__list {
@@ -19,10 +20,6 @@
   .testimonial__info {
     text-align: right;
     padding: 0.9rem;
-    display: inline-block;
-    width: 30%;
-    vertical-align: middle;
-    box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.5);
   }
 
   .testimonial__image-container {
@@ -63,5 +60,16 @@
   .testimonial__text {
     margin: 0.2rem;
   }
-  
+
+  @media (min-width: 40rem)
+  {
+     .testimonial__info {
+        display: inline-block;
+        width: 30%;
+        vertical-align: middle;
+        box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.5);
+     }
+
+
+  }
   
