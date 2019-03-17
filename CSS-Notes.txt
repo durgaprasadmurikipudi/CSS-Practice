@@ -967,6 +967,124 @@ Logical operators in media queries:
     ...
 }
 
+Validating form-input:
+======================
+
+input:invalid {
+    /* some stylle */
+}
+
+Browsers offer for psuedo selector :invalid,
+
+it works this way, when you mention on one input that its type="email", then it automatically validates the text entered in its input and if the input is invalid, i.e not according to the format as typically email input hsould be, it will apply whatever the style that is present in :invaid pseudo selector.
+
+Not only that., you mention 'required' attribute on the input, then when left empty, the style whatever that is present in pseudo selector :invalid automatically gets applied.
+
+:focus also happily applies the styles that you typically want to apply when the element gets focussed.
+
+Generic and Font-Families:
+==========================
+
+Generic:                     Font:
+--------                     -----
+sans                         Times New Roman, Georgia
+sans-serif                   Helvetica, Verdana
+cursive                      brush script, mistral
+monospace                    courier new, Lucida bright
+
+
+Font-Family:
+============
+Generally, if you dont apply any font-family style to it the default that is present in computer will be applied.
+
+But if you mention a generica family, the default font-family belonging to that generic family as specified in browser settings will be applied.
+
+Else, if you mention a specific font-family, then that will be applied.
+
+Beware, while mentioning the specfic font-family enclose it in quotes as below.
+
+font-family: "Monteserrat", sans-serif; //This is the correct syntax.
+
+If that particular font-family is available, it will be applied, else it will fallback to the next font-family that is mentioned.
+
+Font-family is available if its already pre-installed in user machine, else its retrieved from server and made available, else made avialbe thorugh some thirdparty source like google fonts.
+
+cssfont stack is a good website to check the reach of a particular font. Check it out!
+
+While importing from google-fonts, either we can import it in the html doc by saying <link rel="stylesheet" href="<url>" />
+(There is one disadvantage by this, we have to mention this link statement in all html pages that we use in our project to use it in every html page).
+
+Rather you can simply mention import url('<font-url>'); in a common shared css file which is used by all html pages and thus way you can make it available in all web pages by default.
+
+Font-face is font-weight, You dont get by default all font-faces available for a particular font-family, but you got to mention that in the url.
+Even if you dont import font styles like italic, it will be applied by broswer in its own style.
+
+You can actually download the google-fonts and import it from the local.
+
+The syntax to import it from the local project folder is ..
+
+@font-face {
+    font-family: "family-name",
+    src: url("<folder-path-for-font-family-relative-to-the-current-css-file-present");
+}
+
+now if you have two font-faces for this family, you mention that as wll to differentiate.
+
+
+@font-face {
+    font-family: "family-name",
+    src: url("<folder-path-for-font-family-relative-to-the-current-css-file-present");
+}
+
+@font-face {
+    font-family: "same-family-name",
+    src: url("<folder-path-for-bold-font-family-relative-to-the-current-css-file-present");
+    font-weight: 700;
+}.
+
+ttf-- true-type-format.
+
+There are other formats that are available also, woff, which is a compressed one, so loading will be fast.
+
+Other font-properties:
+======================
+
+font-variant:
+-------------
+ex: font-variant: small-caps; In a small-caps font, all lowercase letters are converted to uppercase letters. However, the converted uppercase letters appears in a smaller font size than the original uppercase letters in the text.
+
+font-stretch:
+-------------
+ex: font-stretch: ultra-condensed, refers to letter spacing in the font.
+
+
+text-spacing:
+-------------
+ex: text-spacing: 10px;
+
+white-spacing:
+--------------
+ex: white-space: no-wrap, that implies while the browser decreases its size, gnerally texti s broken at whitespaces to wrap it around, this doesnt let it do. Also, this might make the text overspill if the container is too small for it.
+white-space: pre, displays the text exactly as you typed in the html file.
+white-space: pre-line, makes the text occupy as much as that could be fit in each line.
+
+line-height:
+------------
+ex: line-height: 1. Font-size is multiplied by line-height value. if you mention 2, then the spacing between the lines is equal to
+2 times the font-size. font-size: 200% also implies the same, that is 2 times the font-size.. but % is confusing, it could also actually calculate based on the parent-sized element also, when % is referred. You can also mention px.
+
+text-decoration:
+----------------
+ex: text-decoration: underline|over-line|line-through [dotted|wavy] [#color];
+
+text-shadow:
+------------
+ex: text-shadow, text-shadow: x-axis distance y-axis distance border-size color;
+text-shadow: 2px 2px 2px red;
+
+
+
+
 
 
 
