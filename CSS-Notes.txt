@@ -1161,6 +1161,18 @@ Overrides justify content, if flex-drection is row else overrides align-items.
 value space-between is default behaviour. value: center overrides both justify-content and align-items, also removing the default 
 behaviour of height impact induced by justify-content.
 
+You can also use space-between for justify-content and align-items as well, what it basically does is that distributes the 
+elements acrross the viewport such that width-in-between or both width-in-between and height-in between adjacent elements
+
+z-index for flex-box:
+=====================
+In the position module we learned that adding the z-index  to an element only has an effect, if the position  property with a 
+value different from static  was applied to this element.
+
+One exception from this behaviour is flexbox: Applying the z-index  to flex-items (so the elements inside of the flex-container)
+will change the order of these items even if no position  property was applied. 
+is same across every adjacent pair.
+
 
 
 
