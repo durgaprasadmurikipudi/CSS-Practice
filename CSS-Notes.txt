@@ -53,7 +53,7 @@ In inline way you can do it like this:
 <p style="background: blue"> Hey hi!</p>
  and you're done.
 
-There are 2 advantages of inline styling, first thing is readability, if you have many nested elements, then the style
+There are 2 things about inline styling that you need to know, first thing is readability, if you have many nested elements, then the style
 resulted via cascading from the parent element cannot be calculated and hard to understand.
 
 second, it doesn't scale. If you want to change like some 10 properties on a single element, soon it becomes ugly.
@@ -78,7 +78,7 @@ syntax is :
     you open a selector, that is either tag names in html or id's of any html element or a combination of above.
     you write all the styles that you want to apply.
 
-Down side, Fro above 2 styles, the html file size increases, even if style did not change, and only html content changed,
+Down side, From above 2 styles, the html file size increases, even if style did not change, and only html content changed,
 every time there is a request for new html, the old style rules still come.
 
 This causes additional loading time.
@@ -91,14 +91,13 @@ This causes additional loading time.
 
 This way, css files can be cached.
 
-color -> this si some style that changes the color of text in an element.
+color -> this is some style that changes the color of text in an element.
 font-family -> there are different fonts on how text will look. Ex: are Times, Courier.
 
 if you mention sans-serif as font-family, its actually a special key word, meaning it will default to whatever the browser default
 font setting is.
 
 If it has courier as default setting, then sans-serif will refer to it and so on.
-
 
 so far we used element selectors, but we have different selectors as well..
 
@@ -116,8 +115,8 @@ class selectors:
 
  A element can also have multiple classes.
 
- ID selectors.
- An id is a html attribute that is unnique all over the html conent. you assigna a unique value to a css element by help of this
+ ID selectors:
+ An id is a html attribute that is unique all over the html content. you assigna a unique value to a css element by help of this
  id attribute.
 
  now if you want to apply css style to some element having particular id value, you declare the css as below:
@@ -129,8 +128,8 @@ class selectors:
 
  Attribute selectors:
 
- Every element has some attributes that add some meta dat to html element or modify the behavior of element.
-  for example disabled is an attribute that disabled the field. commonly used on input.
+ Every element has some attributes that add some meta data to html element or modify the behavior of element.
+  for example disabled is an attribute that disabled the field. Commonly used on input.
  ex: <button disabled></button>, here disabled is an attribute.
 
  if you want to apply css style to all the elements having a particular attribute, then you declare css as follows :
@@ -143,22 +142,20 @@ class selectors:
 
  AS we already side, we can assign multiple classes to same element,
  then if both css classes has some same style property.. which would get applied first, common sense is that, whatever comes
- last would take into effect and that is right.
-
- Even in the external style sheets, if 2 same selectors were defined styles, the last selector styles would override the first 
- selector.
+ last in css external style sheet would take into effect and that is right.
 
  One more thing, 
 
- In order of priority the below styles are applied:
+ In order of priority the below styles are applied to html elements:
 
  Inline styles,
  #ID selectors,
  .class, :pseudo-class and [attribute] selectors,
  <Tag> and ::pseudo-element selectors.
 
- even if we dont mention some styles, there are automatically present, example.. h1 has by default { display: block } style.
- These will be first applied adn then overriden as mentioned by the above selectors.
+ even if we dont mention some styles, there are some default styles that are defined on each element,
+ example.. h1 has by default { display: block } style.
+ These will be first applied and then overriden as mentioned by the above selectors.
 
  Intro to combinators:
 
@@ -174,8 +171,7 @@ class selectors:
  So that rule will dominate which has more information on how to select the elements over a vast collection of elements present in the 
  body tag.
 
- Here rather than generic selector, h1 , <id-name> h1 is a mroe specific selector and has more information and so it will dominate.
-
+ Here rather than generic selector, h1 , <id-name> h1 is a more specific selector and has more information and so it will dominate.
 
  #ID selectors,
  .class, :pseudo-class and [attribute] selectors,
@@ -187,8 +183,8 @@ Combinators in general will allow you to specify much more information on how to
 there are 4 types of combinators:
 
 + Adjacent sibling: 
-    ex syntax: h1 + p => this implies that whenever a pair comes like p immediately follwing h1 comes up, or that whenever p is such
-    that it is immediately adjacent to h1, then the rules mentioned in that style will be applied on every such p tag or element.
+    ex syntax: h1 + p => this implies that whenever a pair comes like a p tag-element immediately follwing h1 tag-element,
+    or that whenever p is such that it is immediately adjacent to h1, then the rules mentioned in that style will be applied on every such p tag or element.
     Remember that both have to be in the same level, not a parent child relation ship. I.e, they share the same parent.
     you could use multiple adjacent rule, like h1 + p + a, that says, a should follow p and that should immediately follow h1
     and then only this rule will be applied to that 'a' element.
@@ -205,7 +201,7 @@ to multiple like h1 > p > a.
 'space' descendant: ex: h1 p, here all the p elements which are childs of h1 will get the style, it doesnt matter, if they are 
 direct child or not.
 
- How to know which has how much specificity, or in general how to resolve specificity ?
+How to know which has how much specificity, or in general how to resolve specificity ?
 
 3 number system 
 #-#-#
@@ -227,7 +223,7 @@ so if the above 3 styles apply on some element in html, then the one with specif
 becuase it will override the already applied one.
 
 Points to remember:
-PArent styles are generally inherited.
+Parent styles are generally inherited.
 Multiple rules can apply to one element.
 Specificity resolves "multiple rules" conflict.
 Inheritance defaults can be changed.
@@ -243,7 +239,7 @@ Block element, Inline-Block, Inline as we know.
 When two block elements are present, lets say p1 and p2 representing two paragraph elements.
 If p1 has margin 20px and p2 has margin 20px, then margin-bottom and margin-top of both p1 and p2 respectively will be merged into
 one.
-This is called margin-collapsing. So due to the concept of margin-collapsing distance netween the 2 block elements will be 
+This is called margin-collapsing. So due to the concept of margin-collapsing distance between the 2 block elements will be 
 20px isntead of 40 px.
 
 If p1 has 21 px and p2 has 20 px, then the distance between the 2 elements will be 21px.
@@ -304,7 +300,7 @@ margin: 5px; /* 5px on all sides. */
 margin: 5px 5px; /* 5px on top and bottom <space> 5px on right and left */
 margin: 5px 5px 5px 5px; /* top right bottom left */
 
-if you want to set all sides of margin to 5px except the top which you want to set it to 7px, you acn do it by the follwing.
+if you want to set all sides of margin to 5px except the top which you want to set it to 7px, you can do it by the follwing.
 
 margin: 5px;
 margin-top: 7px; /* since it is parsed the last, so this style will be applied. */
@@ -316,7 +312,7 @@ By default, block elements occupy all the available width.
 height is calculated in a weird way when we use % units.
 
 First HTML calculates the height as big as it content is, thats it. So if you have 3 lines of text, then it will not occupy
-the whole body of browser, but jsut the space that 3 lines will occupy.
+the whole body of browser, but just the space that 3 lines will occupy.
 
 So if a p(block) element has one line of text, with no margin and padding, then it will occupy only 1 line of space.
 Even if you explicitly mention, height: 100%, it has no effect. It will still occupy 1 line of space.
@@ -332,7 +328,7 @@ If you want to include padding and border also in height and width calculation, 
 box-sizing: border-box;
 The default value of the above is content-box;
 
-There is no way to include, margin also in the width and height calculation, so if you set widht: 100% and set some margin without
+There is no way to include, margin also in the width and height calculation, so if you set width: 100% and set some margin without
 border-box calculation, then the border and padding disappears on the right side.
 
 Now if you set border-box property to body element, it will not directly affect all the child elements..
@@ -342,7 +338,7 @@ calcualtion will be again, conent-box-sizing. We use css for the same reason, to
 Becuase for every element, browser sets some default styles and border-box is one among them. For all block elements, it will set to content-box style for box-sizing. Some styles are inherited from its body.
 We also use css to override the inherited values as well.
 
-Now that broswer sets default every block category elemetn box-sizing to content-box, we got to set it to border-box manually.
+Now that broswer sets default every block category element box-sizing to content-box, we got to set it to border-box manually.
 
 * {
     box-sizing: border-box;
@@ -361,13 +357,12 @@ the space occupied by this new line characters.
 One thing we can do is add comments connecting to the inline block elements like below:
 
 <p>
---</p><!-- this comment is remving space/new-line character yet makes legible by seperating elements into  their own new lines in code text.
+--</p><!-- this comment is to remove space/new-line character. It also makes html strucutre legible by seperating elements into  their own new lines in code text.
 --><p>
 ...
 </p>
 
-
-else dont forget to add the space taken by this character also.
+else dont forget to add the space taken by this character also during width calculation.
 
 Pseudo Elements and Pseudo Classes:
 
@@ -422,8 +417,7 @@ CSS Class selectors vs ID selectors:
 ====================================
 
 CSS Class should be our first pick. They are reusable, allows you to "mark" and name things for styling purposes.
-Acts as an identifier for particular style. Even if you use that class only once, its ok to declare it and using a class is rarely 
-wrong.
+Acts as an identifier for particular style. Even if you use that class only once, its ok to declare it and using a class is rarely wrong.
 
 ID selectors on the other hand, are used to style for specific purposes..They also indicate non-css meaning e.g. on page link..
 you can got to specific element by appending that id in url. So ID plays a dual role, where as classes are singly dedicated to 
@@ -460,18 +454,17 @@ a :not(.active) {
 
 selects all child elements of all anchor tags that do not have class active.
 
-Can I use.com tells u which features of css and javascript are supported by broswers. It also mentions partial support and
+'CanIuse.com' tells u which features of css and javascript are supported by broswers. It also mentions partial support and
 total reach.
-
 
 See buttons have lots of default options, more over the text present in it sometimes can be lot different from what we have.
 Generally to style buttons we declare a "button" class that has all the basic look of a button. Thne if you want to modify 
-any button you kust declare a modifier class for existing button class.
+any button you just declare a modifier class for existing button class.
 
 Also, Hover effects look good when you use contrast color complement technique.
 That means, if button background color is green and text color is white, while hovering it.. reverse it, make text color green
 and background color white. But make the border color consistent across the hover effects to show a clear presence of button.
-Also to make the buttom mroe standout so that it looks like a clickable, you have to contrast its color even more.
+Also to make a buttom standout among others so that it looks like a clickable, you have to contrast its color even more.
 For example if general background color around button is green, then make the buttons background color as darkgreen.
 
 Standout technique is the same. If you have 2 components and you want to highlight one among the two.
@@ -481,15 +474,15 @@ Also good color for box-offset is gray color with transperency 0.5.
 
 Also while designing card like structures use text-alighment to center. Also set cards vertical alignment to center.
 
-Even for every list item, you can mention a class, this is fast rendering and celan approach. Probably sometimes little extra 
+Even for every list item, you can mention a class, this is fast rendering and clean approach. Probably sometimes little extra 
 text. This way employ class based design as much as you can.
 
 By default some browsers add a blue border when an element is focussed.
-If you want to remove it, then set out-line proeprty of it to none. That too under :focus pseudo class.
+If you want to remove it, then set out-line property of it to none. That too under :focus pseudo class.
 
 First things first;
 
-When you remove the list style, you autmoatically set their margin to 0 and padding to 0.
+When you remove the list style, you automatically set their margin to 0 and padding to 0.
 Also set vertical-align to be center.
 
 Also when you set display to inline-block for any element, make sure to mention the width accordingly.
@@ -510,7 +503,7 @@ To fix this, an empty div element is usually placed below the element to be floa
 Positioning:
 ============
 
-By default all the elements in the HTML have position proeprty set to static.
+By default all the elements in the HTML have position property set to static.
 
 We can position the elements anywhere in 8 directions (TOP, BOTTOM, RIGHT, LEFT, TOP-LEFT..) from the current element postiion.
 
@@ -519,25 +512,24 @@ Position property values:
 Fixed:
 ------
 
-The fixed places the element relative to the viewport. Change position property to absolute, and apply any of the direction flow 
+The fixed places the element relative to the viewport. Change position property to fixed, and apply any of the direction flow 
 in units px or %?.
 
 The element will be placed there. The elements below it occupy the space of this fixed element :P. this fixed element floats in air.
 
-Also, by applying this 2 preoprties the element will become inline-block element.
+Also, by applying this 2 properties the element will become inline-block element.
 Whether it is a block or inline element, it becomes - inline-block element.
 By becoming inline-block element, its initial width if not set, will wrap its width size according to content.
 
 Also, to set a background image, we can actually declare an empty div element. Via css we can set its background to an image.
-Although its widht and height is set to 100% it would not take any effect. if you manually set height in weight in px, it will 
+Although its width and height is set to 100% it would not take any effect. if you manually set height in weight in px, it will 
 occupy space as block element. So to become truly background z-index should be applied. For this to take in effect, the element
 should also have the position property set to a value other thna default value 'static'.
 
 By default z-index value will be 0/auto. so if you set any element value greater than 0 or auto value, it will be top of that 
 elements where its positioned.
 
-if two different element have same z-index value then that is declared last in the html element will be on top. by default all z-index
-set elemetns will have position set to different value other than 'static', so they kind of float in air. so if two elements
+if two different element have same z-index value then that is declared last in the html element will be on top. by default all z-index set elemetns will have position set to different value other than 'static', so they kind of float in air. so if two elements
 position is overlapped and they have the same z-index value, that element will be on top which cones last in html code file.
 
 lastly z index value can range from any negative number to any positive number range.
@@ -548,9 +540,7 @@ Absolute:
 Absolute and Fixed both behave in the same way. They both take the elements out of the document flow and position the elements
 in the position parameters specified.
 
-The key difference is with what this position parameters are calculated.., for fixed it is always the viewport and for absolute its the
-nearest enclosing parent element which has the position property value set to a value different than 'static'. If none exists
-then its viewport again.
+The key difference is with what this position parameters are calculated.., for fixed it is always the viewport and for absolute its the nearest enclosing parent element which has the position property value set to a value different than 'static'. If none exists then its viewport again.
 
 lets discuss a problem scenario,
  there are 3 div elements each are like atleast 240 px in height.(just mentioning height to eastablish the fact that they occupy a 
@@ -563,7 +553,7 @@ Now if you apply position - fixed  to  badge, it will move along with the scroll
 if you apply absolute such that its positioning is set w.r.t to target div element, it would work only when this div elements position
 property is set only to different value other than static.
 
-If we apply fixed or absolute to div elements this would all be remvoed out of documetn flow and come on top of one another..
+If we apply fixed or absolute to div elements this would all be remvoed out of document flow and come on top of one another..
 so how ?
 
 Keep positioning property 'relative' to those div elements, now just apply position property 'absolute' to badge div element and keep
@@ -592,14 +582,14 @@ body {
 }
 
 it will be simply be passed into html element.
-but if you declare in both html and boyd, the declaration stays in the body as html already has it and thus works.
-Thisi s the default behaviour of css and nothing can be done except declaring in both places.
+but if you declare in both html and body, the declaration stays in the body as html already has it and thus works.
+This is the default behaviour of css and nothing can be done except declaring in both places.
 
 Sticky:
 -------
 
 The sticky position along with some property, top:20 or any other, will behave like a relative element at the beginning and then,
-behaves likes a fixed positioned elemetn as soon as the element when scrolled is at distance 20px from the top or less w.r.t to the viewport. Tt will
+behaves likes a fixed positioned element as soon as the element when scrolled is at distance 20px from the top or less w.r.t to the viewport. It will
 move along the scrolling till its parent element is fully scrolled off and once scrolled off or top:20 property (or any other direction property) you set is not satisfied, it will move back to its original position liek a relatively positioned element.
 
 The top or any other direction property that is set will always work w.r.t to Viewport.
@@ -610,7 +600,7 @@ Stacking context:
 lets say we have 3 div elements, with ids div1, div2 and div3 respectively.
 Now also lets say we have 3 other div elements in div2 as well with id's div21, div22, div23.
 
-Then, if all the position property is fixed means, div 3 will be on top of div2 and di2 will be on top of d1.
+Then, if all the position property is fixed means, div 3 will be on top of div2 and div2 will be on top of d1.
 Set d2 z index as 100, then it will be on top of all divs.
 Now if you set div3 z-index as 1000, obviously it will be on top of them.
 but set d21 z index to be 10000, still it wont surpass div3, since its parent z-index is only 100. this is called stacking context.
@@ -624,10 +614,10 @@ Background-size property w.r.t to Images:
 
 Background-size: 
 ----------------
-This can be mention in terms of pixels and it will be occuping that space alone.
-If you mention only one value in px, it will then apply it to widht and height will be adjusted.
+This can be mentioned in terms of pixels and it will be occuping that space alone.
+If you mention only one value in px, it will then apply it to width and height will be adjusted.
 If you mention 2 values in px, then width and height will respectively take that values in px.
-If necessary iamge will be coerced or zoomed in.
+If necessary image will be coerced or zoomed in.
 
 If you mention background-size in % and say 100% for both width and height, it will take that image part to fill the container,
 if its too big, or zoom out if its smaller than the container. 
@@ -681,12 +671,12 @@ Now by default image occupies whatever height it can regardless of the container
 So if you wanna set the height or width of the image such that it is contained within the container, you hav to explicitly 
 mention the height: 100% on the image to occupy the whole available heigh of container. Images aspect ratio is by default adjsted by browser as soon as you change its height or width. i.e, if its height is adjusted then the width will automatically get adjusted. If its width is adjusted its height will autmoatically be adjsuted.
 
-Now if the image is present in an inline element, make it inline-block, else by default image will regain its to original height and width. So to fix it make it inline-block, adjsut its height and width as wanted, then set the image height to 100% to make it
+Now if the image is present in an inline element, make it inline-block, else by default image will regain its to original height and width. So to fix it make it inline-block, adjust its height and width as wanted, then set the image height to 100% to make it
 occupy only containers height. Width as expected will be automatically gets adjusted.
 
-To make the images and text, side by side: make both div's inline - blocks, adjust their width such that they cocupy the container width and also set vertical-align : middle, such that both text appears at the mid.
+To make the images and text, side by side: make both div's inline - blocks, adjust their width such that they occupy the container width and also set vertical-align : middle, such that both text appears at the mid.
 
-Also make sure that vertical align-top for the image alone if you see any whitespace for image at the bottom, or jsut make the image alone a block element to make the whtiespace at the bottom disappear.
+Also make sure that vertical align-top for the image alone if you see any whitespace for image at the bottom, or just make the image alone a block element to make the whitespace at the bottom disappear.
 
 Linear-gradient:
 ----------------
@@ -716,10 +706,10 @@ radial-gradient(circle/ellipse at top [left]/ bottom/ 20% 50%/.., );
 Stacking multiple backgrounds:
 -----------------------------
 
-Using the background shorthand proeprty, each aprameter to it will be a backgorund.
+Using the background shorthand property, each parameter to it will be a backgorund.
 ex: background: linear-gradient(to top, rgba(150,150,150,0.6), transparent), url(./background.jpg) left 10% bottom 20% no-repeat boder-box;
 
-Now from bottom to top there will be a thin layer of color mentioned in linear-gradient and then thei mage will be visible under
+Now from bottom to top there will be a thin layer of color mentioned in linear-gradient and then the image will be visible under
 its influence.
 
 Filters:
@@ -727,7 +717,7 @@ Filters:
 
 Adding gray scale, increasing brightness and contrast of an Image and so on..
 
-To make an image compeltely greyish , try it its awesome..
+Or to make an image compeltely greyish, try it its awesome..
 
 filter: grayscale(100%); add it to the class that loads background image.
 
@@ -738,7 +728,7 @@ Units:
 
 Whats wrong with using pixels.?
 
-See if you mention 20px font size for a paragraph, then if the user increases zoom size in broswer for more readability, then that text doenot get zoomed in which is a problem. If you basically leave the font size decided by broswer, by using broswer defaults,
+See if you mention 20px font size for a paragraph, then if the user increases zoom size in broswer for more readability, then that text does not get zoomed in which is a problem. If you basically leave the font size decided by broswer, by using broswer defaults,
 then you dont have much a choice..
 
 Units present in CSS:
@@ -762,7 +752,7 @@ Which properties mostly use units, in box-model ,they are height, width, margin,
 
 Absolute length :
 -----------------
-These basically ignore user settigns like if they oincrease the font etc..
+These basically ignore user settigns like if they increase the font etc..
 
 The units belong to these are px, cm, mm..
 
@@ -779,7 +769,7 @@ Adjust to default font size mentioned by browser.
 
 Most popular units are : rem, em..
 
-% is altogehter a different category, we will dive into it more in latter part..
+% is altogehter a different category, we will dive into it more in later part..
 
 When we use position property fixed for an element, its parent element is viewport.
 
@@ -794,23 +784,23 @@ By default for an empty div element with property height 100% will not let it oc
 
 For that to occur, a parent element should the explicit height defined either in % or pixels. Else it will be 0, as the height is dynamically calculated after the DOM is rendered. And while this element is parsed as it has no data, it will have height 0.
 
-So to summarise, for statc/relative elements for height: 1005 to work, make sure allthe ancestors have height value declared.
-For position and fixed, this is not necessary and also if you use vw or vh or px units, heigth will work again as expected.
+So to summarise, for statc/relative elements for height: 100% to work, make sure all the ancestors have height value declared.
+For position absolute and fixed, this is not necessary and also if you use vw or vh or px units, heigth will work again as expected.
 
 Margin collapsing w.r.t to Positioning concept:
 -----------------------------------------------
 
- Lets say you positioned an  div with notning but a background having gray scale of 50%, you pisitioned it above all the elemetns lets say.
+Lets say you positioned an  div with nothing but a background having gray scale of 50%, you positioned it above all the elements lets say.
 
 Unless you mention the top/bottom/left/right explicitly.. by default it would not cover all the available width and height.
 
 Although these fixed and absolute elements have a higher z-index, the margin-collapsing phenomenon would still occur and the margin of the element directly below it and the current element's margin is taken and the one which has highest margin wins, and that will be respected by both this fixed postion-fixed element and the element directly below it.
 
-since positioend elements can be placed anywhere, when top, bottom, left, rigth properties are mentioned, this margin and margin-collapsing is altogehter ignored.
+since positioned elements can be placed anywhere, when top, bottom, left, rigth properties are mentioned, this margin and margin-collapsing is altogehter ignored.
 
 Relative - z-index appearing scenario: 
 --------------------------------------
-Z-index by defautl appears for Fixed, Absolute, Sticky and would appear for relative only when its moved some what from its current position.
+Z-index by default appears for Fixed, Absolute, Sticky and would appear for relative only when its moved some what from its current position.
 
 Syntactically, a relatively element acquires a positive z-index value from browser only when some one or some or all the  properties like top/bottom/left/right are mentioned. 
 
@@ -829,9 +819,9 @@ REM & EM:
 A basic em unit is 16 pixels - accordign to gChrome basic settings,
 
 now if the div element font-size if is declared to have 1.2 em, then the text inside will 19.2px size.
-Now in the same div element, if there is anotehr h1 element and has font size 2em, then its font size would be 38.4px rather than 32px, this is becuase of the use of em. And so the use of em in nested elements will soon enough results in a mess and so it should be used judiciously. Better use it only for child elements and dont nest it much.
+Now in the same div element, if there is another h1 element and has font size 2em, then its font size would be 38.4px rather than 32px, this is becuase of the use of em. And so the use of em in nested elements will soon enough results in a mess and so it should be used judiciously. Better use it only for child elements and dont nest it much.
 
-Rather if you use rem at both places, then div font size will 19.2 px and h1 element will be 32px as rem wil straight away will refer the root size always. Also rem is recently introduced.. but browser size is decent. 
+Rather if you use rem at both places, then div font size will 19.2 px and h1 element will be 32px as rem wil straight away will refer the root size always. Also rem is recently introduced.. and so browser support is decent. 
 
 So basically maintaing the font-sizes in rem usually helps in user accesibility and consistently increases the text over present in all elements as user zooms in or zooms out of the broswer.
 
@@ -850,7 +840,7 @@ vmin - refers to minimum of viewport height and viewport weight. ( or min of cur
 
 vmax - refers to max of viewport height and viewport weight. ( or max of current browser height and width).
 
-sometimes usage of vw or vh can sometiems display scroll bars in wondows machines and you can actually hide thm with css.
+sometimes usage of vw or vh can display scroll bars in windows machines and you can actually hide them with css.
 After adding vw , you probably saw that the scrollbars appeared in case you are working on Windows. This happens as using vw  on Windows does not include the scrollbars - vw: 100  is  equal to 100% of the viewport width + the scrollbars. On the Mac this is not an issue, but when using Windows it is as the scrollbars are displayed by default.
 
 In case you don't want to display these scrollbars, you can use one of these solutions:
@@ -861,7 +851,7 @@ In case you don't want to display these scrollbars, you can use one of these sol
 
 Alternatively you could also use the ::-webkit-scrollbar pseudo element. Simply add the following code to the shared.css file:
 
-body: :-webkit-scrollbar {
+body::-webkit-scrollbar {
     width: 0
 }
 To make sure this works correctly on different browsers, you have to add additional code to it. This blog post
@@ -906,7 +896,7 @@ for( var i = 0; i < planSelectedButtons.length; i++)
 
 
 Another way to set display to block is you can actually a declare another class, which has one
-property - display, taht is set to block.
+property - display, that is set to block.
 Now if we add this class, when hamburger option is clicked, happily it will be displayed. To remove the display, we just remove the class.
 
 Code bocks for the same--
@@ -931,11 +921,11 @@ Responsive Web Design:
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-Generally, mobile phones have high pixel density and so it is as same as of browsers pixels count, but the actual width is calculated indifferently and browsers can recognise the actual width. This cannot be done using pixel count as pixel density is more in mobile phones it's count could be matching a larger device. The above meta tag, will remove that and makes use of the width, rather than pixel count and thus helps in rendering websites responsively.
+Generally, mobile phones have high pixel density and so it is as same as of browsers pixels count, but the actual width is calculated indifferently and browsers can recognise the actual width. This cannot be done using pixel count as pixel density is more in mobile phones and so it's count could be matching a larger device. The above meta tag, will remove that and makes use of the width calculated by browser, rather than pixel count and thus helps in rendering websites responsively.
 
 Viewport just converts the mobile pixel density based on available devices meta data and the pixel ratio the device uses.
 
-So, here's the deal, now you have 3 inline-block elemetns to be displayed in side-by-side layout in desktop version and in block style as soon as it moves to mobile version.
+So, here's the deal, now you have 3 inline-block elements to be displayed in side-by-side layout in desktop version and in block style as soon as it moves to mobile version.
 
 Lets say you defined mobile version at 640px, and that so this inline block elements become block elements when the desktop version reaches 640px. but if its at 700 px, the elements might still cringe and that can cause text overflow in each div element.
 
@@ -951,7 +941,7 @@ along each other side, we set their width to 30%.
 As 30% is a relative value, when the browser width is decreasing, these elements are cringing and splling the text over, but 
 still each occupying the 30% of the available width. So they are reducing their width according to the browser and so the inline-block element nature still kicks in, thinking the place is available for 3 elements and places these elements in the same row.
 
-But with min-width, once the min-width threshold is reached, the element widtg doesnt decrease and the inline block style pushes one down thinking no space available for 3 elements.
+But with min-width, once the min-width threshold is reached, the element width doesnt decrease and the inline block style pushes one down thinking no space available for 3 elements.
 
 Logical operators in media queries:
 
@@ -976,7 +966,7 @@ input:invalid {
 
 Browsers offer for psuedo selector :invalid,
 
-it works this way, when you mention on one input that its type="email", then it automatically validates the text entered in its input and if the input is invalid, i.e not according to the format as typically email input hsould be, it will apply whatever the style that is present in :invaid pseudo selector.
+it works this way, when you mention on one input that its type="email", then it automatically validates the text entered in its input and if the input is invalid, i.e not according to the format as typically email input should be, it will apply whatever the style that is present in :invaid pseudo selector.
 
 Not only that., you mention 'required' attribute on the input, then when left empty, the style whatever that is present in pseudo selector :invalid automatically gets applied.
 
@@ -1007,7 +997,7 @@ font-family: "Monteserrat", sans-serif; //This is the correct syntax.
 
 If that particular font-family is available, it will be applied, else it will fallback to the next font-family that is mentioned.
 
-Font-family is available if its already pre-installed in user machine, else its retrieved from server and made available, else made avialbe thorugh some thirdparty source like google fonts.
+Font-family is available if its already pre-installed in user machine, else its retrieved from server and made available, else made available thorugh some thirdparty source like google fonts.
 
 cssfont stack is a good website to check the reach of a particular font. Check it out!
 
@@ -1028,7 +1018,7 @@ The syntax to import it from the local project folder is ..
     src: url("<folder-path-for-font-family-relative-to-the-current-css-file-present");
 }
 
-now if you have two font-faces for this family, you mention that as wll to differentiate.
+now if you have two font-faces for this family, you mention that as well to differentiate.
 
 
 @font-face {
@@ -1064,7 +1054,7 @@ ex: text-spacing: 10px;
 
 white-spacing:
 --------------
-ex: white-space: no-wrap, that implies while the browser decreases its size, gnerally texti s broken at whitespaces to wrap it around, this doesnt let it do. Also, this might make the text overspill if the container is too small for it.
+ex: white-space: no-wrap, that implies while the browser decreases its size, gnerally text is broken at whitespaces to wrap it around, this doesnt let it do. Also, this might make the text overspill if the container is too small for it.
 white-space: pre, displays the text exactly as you typed in the html file.
 white-space: pre-line, makes the text occupy as much as that could be fit in each line.
 
@@ -1082,6 +1072,94 @@ text-shadow:
 ex: text-shadow, text-shadow: x-axis distance y-axis distance border-size color;
 text-shadow: 2px 2px 2px red;
 
+Understanding Fleexbox:
+=======================
+
+To bring in the style that Flexbox offers, you have to apply display proeprty to 'flex' or 'inline-flex' on the target HTML 
+Element.
+
+As soon as you apply this style to the target element, it becomes a flexbox-container and all the child items in it become,
+flex-items.
+
+There are different styles that you can apply on a flex-container and on the all the flex childs.
+
+Ex: you can set properties: justify-content, flex-flow, align-items, align-content on the flex-container.
+We can set properties: order, flex, align-self on each flex-item.
+
+Lets dive in more what each property does..
+
+Basically what happens, when you declare a display of an element as 'flex'?
+
+All the child elements basically align themselves vertically. They occupy as much as the width that is specified by the target 
+css code, else will occupy as much their content allows. Basically width is distributed such that all child elements satisfy the
+target css applied, else they are shrinked to occupy that width which their content allows. So here height for all the child 
+elements is the maximum height of all the child elements present, unless specifically mentioned all child elements occupy that height.
+
+One thing to note here is that all child elements basically occupy the same horizontal line. If in that line, if all elements
+do not have sufficient space, then the rest of elements which could not fit in, disappear. Starting from the first child element,
+width is taken up by each child according as specified in the above paragraph. And at the last, if the screen space got completed 
+and there are still some more children, they will just be invisible.
+
+If you declare the display of an element as 'inline-flex', every thing is same as above except that width doesn't shrink to its
+content width if the width is explicitly mentioned on the flex-item.
+
+The properties flex-direction and flex-wrap are by default 'row' and 'nowrap' respectively as soon as you set the display as
+'flex'.
+
+If the flex-wrap is mentioned as 'wrap', all the child elements will behave as inline-block elements and the width of each
+element will adjust same as above till the content allows, once that threshold is crossed, elements that do not fit in occupy
+a new row. Height behaves just as above.
+A value of 'wrap-reverse' wraps the elements such that is if size doesnt fit in for all the elements in single horizontal line, 
+as many as that are required elements will occupy the next row starting from the first child as opposed to the last child.
+
+Flex-direction: 'column' makes the flex-items as block elements, each child elemetn will occupy a row. 
+And then flex-wrap property will have no effect on it. 
+Width will shrink till the content allows, but if the width property has some fixed value, it will not shrink beyond that fixed 
+value as is the general behaviour of a block element.
+
+There are 2 other values that might interest you w.r.t to flex-direction. It is row-reverse and column-reverse.
+As expected in row-reverse, the first element is appears last in the horizontal row, if it occupies multiple rows then these 
+elements appear as if they are right aligned. Except that, behaviour of child elements is as same as when the value is set to 
+'row'.
+In column-reverse, the first child appears in the last row and except that every thing is as same as when the value is 'column'.
+
+The behaviour of row, column, row-reverse and column-reverse can be captured in better way by main-axis and cross-axis concepts.
+
+In row: Main-axis says the elements starting from first should be displayed from left to right.
+In row-reverse: Main axis stipulates that elements starting from from right to left.
+In column: Main-axis says that elements starting from first should be displayed from top to bottom.
+In column-reverse: MAin axis says that elements starting from first should be displayed from bottom to top.
+
+Cross-axis basically has its origin point from the same point as main-axis and moves in perpendicular direction to it.
+So basically main-axis and cross-axis concepts depend upon flex-direction.
+
+Shortcut for flex-direction and flex-wrap is flex-flow.
+ex: flex-flow: row wrap.
+
+There are other properties that influence this main axis and cross axis.
+
+Justify-content influences the main-axis, it also impacts the height of each element. Height is adjusted such that content
+happily fits in.
+Align-items influences the cross-axis and has no impact on height..
+There are 3 common values accespted by both the properties. There are also other common values, more on that is left to 
+to users interest.
+
+The 3 values are flex-start, center, flex-end.
+
+lets take the example of justify items and this can be used to axplain how align-items impacts the behaviour as well.
+flex-direction: row;
+Justify content: flex-start = Main axis starts from left to right.
+Justify-content: center = Main axis starts from a point where the left and right extra or remaining or left out spaces are equal.
+                          If needed, multiple rows will be created.
+Justify-content: flex-end = Main-axis starts from a point where all the extra space left out after aligning the elements
+                            gets collected in the left side.
+
+Align-content:
+--------------
+
+Overrides justify content, if flex-drection is row else overrides align-items.
+value space-between is default behaviour. value: center overrides both justify-content and align-items, also removing the default 
+behaviour of height impact induced by justify-content.
 
 
 
