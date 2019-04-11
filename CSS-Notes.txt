@@ -1173,6 +1173,109 @@ One exception from this behaviour is flexbox: Applying the z-index  to flex-item
 will change the order of these items even if no position  property was applied. 
 is same across every adjacent pair.
 
+Flex-Items Properties:
+======================
+Order:
+------
+This can take a value from very large negative number to very large positive number.
+Default value is 0.
+Now lets say if you have 4 inline div blocks(div1, div2, div3, div4) which are placed side by side respectively.
+lets say Div3 has order: -2 and div2 has order: 1
+div3 comes before div1 and div4 follows and then comes div2.
+Each div will have order values as below:
+div1: -2, div2: 0, div3:0, div4: 1
+
+So baiscally this is to order the elements in a flex container.
+
+align-self:
+-----------
+This particularly is used to style particular flex-item among other items present in the flex container.
+
+flex-grow:
+----------
+
+Takes a value from 0 to a very large positive integer.
+If only one flex item has this property assigned (whatever maybe the value), then as the width of the viewport increases, this 
+flex item grows in size to occupy the remaining space available.
+
+lets say 2 flex items have been assigned these proeprty and rest others were not assigned.
+lets assume the values are 2 and 4 respectively. Once the elements are mounted and occupied their respective positions and the
+available width, they grow in ratio of 2:4 when the viewport width increases.
+That is to say, so if viewport width has increased after elements are all mounted and displaying, the increased space is divided
+into 6 parts and 2 parts width is increased in one elements and 4 parts of that width is increased in another element.
+
+flex-shrink:
+------------
+This is same as flex-grow and mentions in what ratio should it shrink.
+Accepts value from 0 to very large positive integer.
+A 0 value means element will not shrink beyond its specified width. 
+A non-zero positive value means, the ratio it which it will shrink.
+If there is only item left then it will shrink till its content allows.
+if nowrap value is present for flex-wrap., as you decrease the viewport width, it gets hidden, else elements starting from 
+main-axis last-end start to occupy the next new line.
+
+Flex-basis vs width vs height:
+------------------------------
+Flex basis is directly dependent on the direction of the main axis.
+So if the main-axis direction is from left-to-right or right-to-left then flex-basis overrides the width property.
+If the main-axis direction is from top-to-bottom or bottom-to-top then flex-basis overrides the height property.
+
+There is also a shortcut to mention the shrink, grow and to mention the order of the flex-item.
+which is simple 'flex'.
+
+CSS Grids:
+==========
+CSS Grid - relates to positioning and layout where the entire viewport is divided into rows and columns and the elements are
+positioned in that particular grid as wanted.
+
+To make a CSS grid work, we have to specify the element to act as a CSS grid, for that we have to declare the style property of 
+that element as display: grid;
+
+Consider a scenario to better understand this CSS Grid layout.
+
+Lets say there are 4 div elements: el1, el2, el3, el4. And also there exists a div container, lets call it div1.
+Now you want to divide this parent container into 3 columns..with the help of grid style.. how would you do it ?
+The style definiton would be like this:
+.container {
+    display: grid;
+    grid-template-columns: 200px 150px 15%;
+}
+
+Now how would this div elements get arranged with respective to this style.
+el1 will occupy the 200px block, el2 will occupy the 150px block, 15% block will be occupied by el3.
+rest of the sapce will go waste. el4 gets itself a new row and will again occupy the 200px block.
+after 200px and 150px is occupied, 15% of the total width is allocated to third block.
+
+This way grid layout works.
+Now if you want to create 4 columns, you can declare the width occupied by the 4th column as well and that will get created.
+ ex:
+
+ grid-template-columns: 200px 150px 20% 1fr;
+
+ fr is a special unit with respect to grid, where the 'remaining' space is divided in ratio format.
+ if there is just 1fr unit in the declaration it gets all the remianing space.
+
+ if there are 2 or more fr units, the number before them is how the gird width is distributed.
+ ex:
+ gid-template-columns: 200px 2fr 20% 1fr;
+ now the after 200px and 20% of the total container width is subtracted from total available width, the remaining space is distributed between 2nd column 
+ and 4th column respectively in the 2:1 ratio respectively.
+
+ grid-template-rows : 2.5 rem 1.5rem;
+  is how you create rows, here there are 2 declarations and thats why 2 rows are created, with 1st row having 2.5rem height
+  and 2nd row having 1.5rem height.
+
+  if there are 9 elements, 4 elements will occupy first row as mentioned in the grid-template-column and next 4 rows in next row.
+
+  The last 9th element will occupy the default row height and the afore mentioned column width.
+
+  This is how css grid style works.
+
+
+
+
+
+
 
 
 
