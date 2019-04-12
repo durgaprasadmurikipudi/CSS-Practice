@@ -1271,6 +1271,49 @@ Now if you want to create 4 columns, you can declare the width occupied by the 4
 
   This is how css grid style works.
 
+Positioning child elements in a Grid:
+=====================================
+Grid-column-start & Grid-column-end:
+-----------------------------------
+ Now the indexing starts from 1. So if you have 4 columns, then indexing for grid starts from 1 and ends with 5. 5 marks the end of
+ the 4th column.
+
+ Now if you want a column to extend to 2 columns,
+ you can specify the style property to that html element like below:
+ gird-column-start: 3
+ gird-column-end: 5;
+ now it will occupy the 2 columns length, starting from column 3. same with the row extending.
+ syntax is : grid-row-start and grid-row-end.
+
+ auto:
+ -----
+
+ It basically occupies the min width of content and maximum occupies as much as space available.
+ so if there are 3 columns and you mentioned 2 columns width and third columns width you mentioned it as auto, then it will take
+ that length.
+
+ minmax():
+ ---------
+ This will be used in gird-template-rows or grid-template-columns, when mentioned for a column, it will take in first parameter 
+ the minimum height or width which the row or column should maintain and the second parameter is the max width or height 
+ which the row or column should maintain respectively. 
+
+ for ex:
+ grid-template-columns: 200px 150rem minmax(20px, 45px) auto;
+ now the third column will not shrink beyond 20px and will not occupy beyond 45px even though space is available. Also this
+ helper function will accept 'auto'.
+
+ Another helper function is repeat():
+ repeat:
+ -------
+
+ to create like 20 columns you cant just go and mention 20 values in grid-template.
+ you can actually say:
+ grid-template-columns: (20, 25px);
+ else 
+ gird-tempalte-columns: (4, 25px 25px 25px 25x 25px)
+
+
 
 
 
