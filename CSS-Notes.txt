@@ -1244,9 +1244,10 @@ The style definiton would be like this:
 Now how would this div elements get arranged with respective to this style.
 el1 will occupy the 200px block, el2 will occupy the 150px block, 15% block will be occupied by el3.
 rest of the sapce will go waste. el4 gets itself a new row and will again occupy the 200px block.
-after 200px and 150px is occupied, 15% of the total width is allocated to third block.
+After 200px and 150px is occupied, 15% of the total width is allocated to third block.
 
 This way grid layout works.
+
 Now if you want to create 4 columns, you can declare the width occupied by the 4th column as well and that will get created.
  ex:
 
@@ -1258,10 +1259,10 @@ Now if you want to create 4 columns, you can declare the width occupied by the 4
  if there are 2 or more fr units, the number before them is how the gird width is distributed.
  ex:
  gid-template-columns: 200px 2fr 20% 1fr;
- now the after 200px and 20% of the total container width is subtracted from total available width, the remaining space is distributed between 2nd column 
- and 4th column respectively in the 2:1 ratio respectively.
+ now the after 200px and 20% of the total container width is subtracted from total available width, the remaining space is 
+ distributed between 2nd column and 4th column respectively in the 2:1 ratio respectively.
 
- grid-template-rows : 2.5 rem 1.5rem;
+ grid-template-rows : 2.5rem 1.5rem;
   is how you create rows, here there are 2 declarations and thats why 2 rows are created, with 1st row having 2.5rem height
   and 2nd row having 1.5rem height.
 
@@ -1312,6 +1313,37 @@ Grid-column-start & Grid-column-end:
  grid-template-columns: (20, 25px);
  else 
  gird-tempalte-columns: (4, 25px 25px 25px 25x 25px)
+
+Now to span two columns you need not mention even the column number to the grid-column-end attribute, you can simply say span 2;
+ex:
+grid-column-start: 3;
+grid-column-end: span 2;
+now the eleemtn occupies 2 columns and ends just before line 5.
+
+Now el3 comes after el2, since el2 comes before el3 in dom declaration its only natural that it comes before el3 in visual
+representation as well.
+
+Now lets consider a scenario, lets say we mentioned that el3 should start from row 2 and should span 2 rows, also that it should
+occupy total 3 columns. Now el2 declaration is such that it should totally occupy a line.
+el1 occupies by default 1 row and 1 column. 
+
+Now in this case how visual representation would be ?
+el1 occupies row1 and col1
+e2 starts from row 2 and occupies the entire row, since row1 already has el1 and so is not possible to occupy entire row.
+Now comes el3, since it is explicitly was redirected to mount on row2, el3 mounts there pushing el2 to start from row4.
+el4 occupies from row5.
+
+That way collision is avoided.
+If you explicitly redirect el2 to mount on row2, then they simply overlap!.
+Since el3 comes after el2 el2 overrides and sits on top of it.
+if you provide higehr z-index to el2, it will then sit over el3.
+Z-index is by default supported by grid system, even though target html element position is set to value 'static'.
+
+Also if you want to span all columns, instead of mention the last-column-number, you can even say -1.
+ex: if you have 4 columns and you want to span all 4 columns, general syntax is mentioning the last column number.
+grid-column-end: 5;
+but this also works..
+grid-column-end: -1;
 
 
 
