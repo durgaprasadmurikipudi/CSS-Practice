@@ -1345,6 +1345,55 @@ grid-column-end: 5;
 but this also works..
 grid-column-end: -1;
 
+grid-column:
+------------
+There is a shortcut where property values for both start and end will be mentioned in a single place.
+grid-column: 1 / -1; //First values is the column start value and second one is the column end value.
+grid-row: 1 / span 2; // You can also use alias names as well as span keyword. This is shortcut for grid-row startn end end 
+properties.
+
+grid-area:
+----------
+You can also mention both grid-row and gird-coumn at a single place.
+syntax: grid-area: row-start / column-start / row-end / column-end.
+
+Grid-column-gap and grid-row-gap will mention the gap spaces between rows and columns respectively.
+Grid-gap property is the shortcut. Mention a value will apply for both rows and columns, mention 2 values it will be respectively 
+applied to row and column.
+
+Grid-area-naming:
+-----------------
+A scenario where you have 4 elements each coresponding to Header, Sidebar, Maincontent and Footer.
+The grid-area is mentioned as 3 rows / 4 columns.
+Now after mentioning the grid template,
+you can name each area as below:
+Grid-template-areas: "header header header header" "sidebar main main main" "footer footer footer footer";
+Each string corresponds to one row.Each value in the string corresponds to the specific grid area.
+
+Now if there are 4 div elements el1, el2, el3, el4.
+They can be led to occupy by their respective places in their css syntax as below:
+
+.el1 {
+    grid-area: header;
+}
+
+.el2 {
+    grid-area: sidebar;
+}
+
+.el3 {
+    grid-area: main;
+}
+
+.el4 {
+    grid-area: footer;
+}
+
+Automatica names will also be generated for gird rows and columns. Please refere when needed.
+
+
+
+
 
 
 
