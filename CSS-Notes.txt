@@ -1349,12 +1349,12 @@ grid-column:
 ------------
 There is a shortcut where property values for both start and end will be mentioned in a single place.
 grid-column: 1 / -1; //First values is the column start value and second one is the column end value.
-grid-row: 1 / span 2; // You can also use alias names as well as span keyword. This is shortcut for grid-row startn end end 
+grid-row: 1 / span 2; // You can also use alias names as well as span keyword. This is shortcut for grid-row starting and end 
 properties.
 
 grid-area:
 ----------
-You can also mention both grid-row and gird-coumn at a single place.
+You can also mention both grid-row and grid-column at a single place.
 syntax: grid-area: row-start / column-start / row-end / column-end.
 
 Grid-column-gap and grid-row-gap will mention the gap spaces between rows and columns respectively.
@@ -1367,7 +1367,9 @@ A scenario where you have 4 elements each coresponding to Header, Sidebar, Mainc
 The grid-area is mentioned as 3 rows / 4 columns.
 Now after mentioning the grid template,
 you can name each area as below:
-Grid-template-areas: "header header header header" "sidebar main main main" "footer footer footer footer";
+Grid-template-areas: "header header header header" 
+                     "sidebar main main main" 
+                     "footer footer footer footer";
 Each string corresponds to one row.Each value in the string corresponds to the specific grid area.
 
 Now if there are 4 div elements el1, el2, el3, el4.
@@ -1389,7 +1391,207 @@ They can be led to occupy by their respective places in their css syntax as belo
     grid-area: footer;
 }
 
-Automatica names will also be generated for gird rows and columns. Please refere when needed.
+Automatically names will also be generated for grid rows and columns. Please refer when needed.
+
+Generally the elements, collection of elements whose display position is other than static is collectively organised into a grid.
+
+Justify-items & Align-items:
+-------------------------------
+By default, these properties are set to 'stretch' when display is grid. And the html element whatever that is present in that grid
+will be stretched to occupy the full area of that grid area.
+But there are three other values, we can use, start, center and end.
+If you apply one of the above valid values to justify-items: width will be affected and will occupy only as much as content needs.
+But height will be affected and will occupy the full grid-areas height.
+The start of the html depends on the element value.
+If you apply any of the above valid values to align-items, height will be affected, but width will be full gird-area's width.
+
+Justify-content & align-content:
+--------------------------------
+If you specified the width and height of the grid columns and rows, and now if all the entire grid-areas thus formed donot occupy 
+the enitre broswer width, then you can position this whole structure, from start, center and end via these properties.
+Whole structure's width or height can be controlled by justify or align property respectively.
+
+A pattern: 
+----------
+Justify-*  controls horizontal axis and Align-* controls y-axis.
+
+Justify-self & align-self:
+--------------------------
+Se up-above you aligned all the elements all at once, these properties are to select a individual grid area and control their alignment.
+
+Grid-css is responsive by default, but if you want to actually change its gird definition like increase of rows and columns 
+or decrease of rows and columns, you can actually redefine the grid layout in medai queries as you wanted.
+Be sure to name those all areas in those case. That way, you just have to define the grid layout and all the elements positioning
+will be decided on the area they occupy and not be redfined..
+
+An example would explain this better..
+
+lets say grid is as below for desktop version.. 
+
+.container {
+    grid-template-rows: auto auto auto;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-areas: "header header header header" "side main main main" "footer footer footer footer";
+}
+
+@media(max-width: 40rem) {
+    grid-template-rows: auto auto auto auto;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-areas: "header header header header" "main main main main"
+                         "side side side side" "footer footer footer footer";
+
+}
+
+Now if a element was asked to occupy sidebar then, it can be declared as follows: 
+
+.el {
+    grid-area: side;
+}
+
+so now in first case it occupies the 2nd row 1st column.
+so now when media query gets triggered, it occupies the entire 3rd row, similarly for other 3 areas as well.
+
+This is the advantage of element defining its area to a grid-area.
+
+Applying auto-flow:
+-------------------
+See, how does a grid behave when automatically elements get added to the grid container.
+The grid automatically creates new rows for each html element. Now if you want to create a new column instead of row for each
+new html element, you can set property 
+**************
+"grid-auto-flow: column;"
+**************
+
+By default row property is assigned and hence new rows are created. 
+You can actually mnetion the height for each new row created. or Probably the width of each column created, if in the case where
+columns are created. 
+
+for rows.. grid-auto-rows: 5rem;
+or probably you want the row to be flexible then, grid-auto-rows: minmax(8rem, auto);
+
+Then new grid row if ever is created, follows the old template, like if the already present grid has 2 columns, then the new
+grid row created will also have 2 columns.
+also, the properties like grid-auto-* will control only newly created grid structure, that is either row or column depending upon
+the grid-auto-flow setting.
+
+Auto-fill, auto-fit:
+--------------------
+
+These awesome properties are ehlpful in creating just the right columns that fit the view-port exactly.
+like grid-tempalte-columns: (auto-fill, 15rem);
+The key difference between auto-fill and auto-fit are:
+
+auto-fill FILLS the row with as many columns as it can fit. So it creates implicit columns whenever a new column can fit, because it's trying to FILL the row with as many columns as it can. The newly added columns can and may be empty, but they will still occupy a designated space in the row.
+
+auto-fit FITS the CURRENTLY AVAILABLE columns into the space by expanding them so that they take up any available space. The browser does that after FILLING that extra space with extra columns (as with auto-fill ) and then collapsing the empty ones.
+
+See auto-fill adds empty columns, auto-fit expands the present columns width to fill the entire viewport width..
+There are subtle differences and please see in the web.
+
+Dense:
+------
+grid-auto-flow: row;
+to dense it
+grid-auto-flow: row dense;
+
+What happens  when you say this ?
+consider a scenario where thereis a grid like 3 * 3;
+Now if there are 5 elements, then first 3 elements will be in first row and second 2 elements will occupy the next row.
+
+now lets say first element and occupy each 2 columns, then what happens is first elemetn will fit in first row, 
+second element will take 2nd row. rest all the three elements will start from 2nd row -3rd column and proceed down along the way.
+
+But if you say dense, then the third and 4th will each occupy 1st row-3rd column and 2nd row-3rd column position.
+Now I think you get it.
+
+So when you use grids, the thing I want to re-iterate is when you particularly mention a div elemnet to start from some particular row, the elements after it might swithch some rows up this particular row start, if there present any 
+empty rows. So DOM order will be disturbed and respected.
+But if you apply a column span, dom-order will not be disturbed and respected.
+
+CSS-GRID vs FLEX_BOX:
+---------------------
+Flex bos is particulary useful when there is a collection of elemnts you want to design in a row.
+CSS GRID will be help ful when there are a collection of elemnts distributed over a loyout compromising rows and columns.
+Sure columns are present in Flexbox, but only when you say to wrap around.
+
+Grid-summary:
+=============
+
+Creating a grid:
+----------------
+Display: grid creates a grid where child elements are automatically placed in rows.
+This defualt can be overwritten with grid-auto-flow and then also, it can be further manipulated with grid-auto-rows or 
+grid-auto-columns
+Use grid-gap to add gap bewtween rows and columns.
+
+Defining the grid structure:
+----------------------------
+You define columns and rows explicitly via grid-template-columns / grid-template-rows.
+Use repeat (times, size) to create multiple columns or rows with ease.
+Use auto-fill / auto-fit to derive the number of columns automatically.
+Use minmax for dynamic sizing.
+
+Placing elements:
+-----------------
+Position elements in grid via grid-row and or grid-column.
+Use "span X" to span an element over multiple rows or columns.
+Use line numbers, line names or named areas.
+
+Aligning elements:
+------------------
+Align grid items via justify-items x-axis and align-items y-axis.
+Align the entire grid content via justify-content x-axis and align-content y-axis.
+
+CSS-Transform:
+==============
+
+tranform: rotateZ(45deg);
+
+will rotate the element by 45 degrees.
+
+transform-origin: top / left/ right / bottom / top left/ top right .. / .... center;
+
+This is the point from with which reference point in the element it should be rotated.
+
+like if it is left, it will rotate as if center of axis is situated on the left side.
+if its top right, then center of axis will be in the top right and will transform as dictated by transform property.
+
+You can even mention px or rem or % values in (x,y) pair form like below:
+
+transform-origin: 1rem 1.5rem;
+Starting from the left top, the center of origin will move 1rem in x -axis direction and 1.5 rem in y-axis direction.
+You can mention the same (x, y) pair values in px and %.
+
+see now, elements can also be moved along x-axis direction and y-direction with transform.
+
+transform: translateX(1rem) translateY(-1.5rem);
+The above will move the element 1rem in x-axis direction and 1.5rem in negative y-axis direction.
+
+transform: rotateZ(45deg) translateX(1rem) translateY(-1.5rem);
+
+Now x-axis and y-axis will be tilted by 45 degrees and then the movement happens along the axises.
+
+An extra tip, use overflow: hidden on the parent container and move the desired child element in this way, you might cut edges,
+which might look as if its wrapped as gift thread.
+
+transform: scale();
+-------------------
+scale takes in one value parameter. ITs base is 1. So if you apply 0.5 it will zoom out to 50% and if you put 1.5 it will zoom in to 150%.
+
+transform: skewX() skewY()
+
+skewX takes in one parameter value in deg, and if you say 20 deg, then left and right border line will make 20deg tilt w.r.t to their original border lines respectively.
+
+
+skewY takes in one parameter value in deg, and if you say 20 deg, then top and bottom border line will make 20deg tilt w.r.t to their original border lines respectively.
+
+it can be mentioned also as skew(20deg), if only one value will be applied for x-axis and 2 params means, it will be applied
+along x-axis and y-axis.
+
+
+
+
+
 
 
 
