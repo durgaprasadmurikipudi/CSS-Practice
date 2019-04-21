@@ -1588,6 +1588,36 @@ skewY takes in one parameter value in deg, and if you say 20 deg, then top and b
 it can be mentioned also as skew(20deg), if only one value will be applied for x-axis and 2 params means, it will be applied
 along x-axis and y-axis.
 
+Strangely to rotate in 3d, use rotateX and rotateY. For more on this, read online.
+Also see the perspective property along with that.
+With respective to rotate, 3d is achieved by rotateX and rotateY. But w.r.t translate 3d is achieved by transalate-z.
+even perspective and perspective-origin property apply on this translate.
+
+By default if the container is flipped 90  along y-axiz, the elements inside even when translated across z-axis will not be visisble.
+to preserve this 3d style, use transform-style: preserve-3d;
+Please checkout-backface-visiility property as well online.
+
+Transition:
+===========
+Transition takes a list of properties and then perform the changes on them in a duration as mentioned.
+Ex: transition: opacity 200ms ease-out;
+
+Now whenever opacity changes on that particular element, it will change acrossa course of duration 200ms.
+Now ease out means it will start fast end end slow and vide cersa for ease in.
+You can mention couple of properties also.
+
+Like transform: opacity 200ms ease-out, translate: 500ms ease-out;
+
+The transition  property is used as see in the previous video:
+
+transition: WHAT DURATION DELAY TIMING-FUNCTION; 
+
+Example:
+
+transition: opacity 200ms 1s ease-out; 
+
+Can be translated to: "Animate any changes in the opacity  property (for the element to which the transition  property is applied) over a duration of 200ms. Start fast and end slow, also make sure to wait 1s before you start".
+
 
 
 
