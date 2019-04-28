@@ -1774,6 +1774,134 @@ used for like.. .main-title.
 
 SASS/SCSS:
 ==========
+What sass is about ?
+sass is just an extension of css, where rudimentary css sytanx is enhanced to a much more langauge like design.
+There is very little difference between sass and scss.
+
+installation:
+-------------
+sudo apt-get install ruby 
+apt-get install gem 
+gem install sass
+
+gem is one of the things made out of ruby. SASS needs ruby to run at the run time.
+Once run it will produce the vanilla css out of scss.
+Any valid css is scss.
+But any css with semicolns and braces removed is valid sass. 
+Now I guess you understood the difference between sass and scss.
+
+In sass, instead of bracess indendantion is used. and Instead of semicolns, new line breaks is used.
+WE will continue to learn scss instead of sass, as its pretty much just a minute sytnactic difference.
+
+If you write a scss file you convert into normal css file which can browser understand by following command:
+sass main.scss main.css
+sass --watch main.scss:main.css
+
+Nested selectors:
+-----------------
+In scss you can write this noraml css like
+
+.class-name {
+    123
+}
+
+.class-name li {
+    456
+} 
+
+into 
+
+.class-name {
+    123
+
+    li {
+        456
+    }
+}
+
+Nested properties:
+------------------
+
+flex-direction: column;
+flex-wrap: no-wrap;
+
+ can be written as
+
+ flex: {
+     direction: column;
+     wrap: no-wrap;
+ }
+
+ Notice the syntax clearly, notice the ':' after flex.
+ Also this is how you group the properties  under a common namespace in scss.
+
+ Variables:
+ Variables are declared just by prefixing $ sign in before and store whatever valid css value you want. Then you can assign this 
+to any css proeprty in scss file.
+
+lists:
+This is a variable which can store array of values. For example
+$border-default: 1rem solid black;
+now 
+
+.class-name {
+    border: $border-default;
+} 
+
+maps:
+syntax:
+
+$colors: (main-color: #ee44cc, secondary-color: #ccffcc);
+
+you can refer them by sass provided built in function $map-get( $colors, main-color);
+
+There are so many built in functions provided by sass/scss. For ex lighten(), you give a color and this lighten function will
+return the lightened version of it by the pervent value provided.
+ex: lighten(blue, 10%);
+
+simple arithemetics:
+you can actually directily multiply and divide variables and get valeus of it.
+ex: size: $base-size * 3;
+
+inheritance:
+@extend
+Lets see you have a baseic class: .base-class
+then now you can use the declarations provided in it in below ay:
+
+.special-class {
+    @extend .base-class;
+    <some more declarations;>
+}
+
+mixins: mixins are function, please read in breif about them in web.
+
+ampersand operator:
+
+gnereally .class-name {
+    .class-name1 {
+
+    }
+}
+
+will be compiled to 
+
+.class-name .class-name1 {
+
+}
+
+What is the equivalent of .class-name.class-name1 {
+
+}
+
+that is just
+ .class-name {
+     &.class-name1 {
+
+     }
+ }
+
+ End of css.
+ 
 
 
 
