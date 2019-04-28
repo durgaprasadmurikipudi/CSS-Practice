@@ -1615,12 +1615,165 @@ transition: WHAT DURATION DELAY TIMING-FUNCTION;
 Example:
 
 transition: opacity 200ms 1s ease-out; 
-
 Can be translated to: "Animate any changes in the opacity  property (for the element to which the transition  property is applied) over a duration of 200ms. Start fast and end slow, also make sure to wait 1s before you start".
 
+There are so many timing functions, google them to find more.
 
+Animations:
+-----------
 
+Simply CSS Transitions++;
 
+Defining a css animation,
+
+@keyframes wiggle {
+    from {
+        transform: rotateZ(0deg);
+    }
+    to {
+        transform: rotateZ(10deg);
+    }
+}
+
+now wiggle is a css animation we can apply to any element.
+for example like below,
+
+#id1 {
+    animation: wiggle 200ms 3s 8 alternate;
+}
+What above means is that wiggle animation is played on a duration of 200ms and will eb kicked out after 3 second once the page
+is loaded and will happen for 8 times in a an alternate style. Which means, from to end, end to from ... like this, the series
+continues.
+
+What actually is wiggle animation doing, each frame is definedin @keyframes.
+First frame looks like what is described in 'from' block.,
+all the css properties are there in that block will be applied.
+Then it will slowly transiton into 'to' block, where all the css present in are applied in a transition or animated style (if the
+css properties are in the list of animatable properties, they will be animated, else it will be a quick snap) 
+
+The animation  property is used as see in the previous video:
+
+animation: NAME DURATION DELAY TIMING-FUNCTION ITERATION DIRECTION FILL-MODE PLAY-STATE; 
+
+Example:
+
+animation: wiggle 200ms 1s ease-out 8 alternate forwards running; 
+
+Can be translated to: "Play the wiggle keyframe set (animation) over a duration of 200ms. 
+Between two keyframes start fast and end slow, also make sure to wait 1s before you start.
+ Play 8 animations and alternate after each animation. Once you're done, keep the final value applied to the element (that is forwards,
+ if it is backwards, then the to block keyframe would be final, if 'both' value is applied, then it will start from 'from' block
+ and will end in 'end' block.). 
+ Oh, and you should be playing the animation - not pausing."
+
+ Adding animations to our keyframes:
+
+ @keyframes wiggle {
+    0% {
+        transform: rotateZ(0deg);
+    }
+    50% {
+        transform: rotateZ(-10deg);
+    }
+    100% {
+        transform: rotateZ(10deg);
+    }
+}
+Animation will be transitioned from 1 keygrame to another key frame, as mentioned in %'s order.
+if the first 2 percentages difference is 50%, then it will take about half of the time of total animation to transform from
+first animation to another animation.
+
+We can use also different timing functions avaialble on animation
+#id1 {
+    animation: wiggle 200ms 3s 8 alternate ease-out; // Here ease-out timing function is being used.
+}
+
+There are events related to animation that javascript can listen and addEventListener to.. 
+The events that could be listend to are.. animationstart, animationend, animationiterator.
+
+css variables:
+--------------
+How you declare a css variable?
+First you define the variable in a root selector, then it can be used in all the selectors there after.
+
+:root {
+    --my-color: #ffeecc; // variable names starts with two hypen's then browser udnerstands that this is a variable.
+}
+
+using it in another selector 
+
+#id {
+    color: var(--my-color)
+}
+
+#id2 {
+    color: var(--my-color, #fe3ced); // second parameter is the defualt value that will be used, in case if the variable is not present.
+}
+
+vendor prefixes:
+----------------
+Different browsers implement css features at different pace, so before the final version is finalised, that feature will be made
+available by that prefix.
+More over vendor prefixes come first and then the original css declration, if at all the original one is not yet finalised, it
+will be ignored and vendor prefix will be used, else original will override.
+ex:
+
+#id {
+    display: -webkit-flex;
+    display: flex;
+}
+
+if flex is not yet supported, then the native support of webkit engine is used for that feature, else standard implementation
+of that feature will be provided by browser.
+
+@supports (display: grid):
+---------------------------
+
+@supports (display: grid) {
+    <some - css declarations> // This code of css will be applied only when browser can understand what the declaration display: grid
+    // is understood by browser.
+}
+
+Polyfills:
+----------
+IF a particular css feature is not yet supported by browser, pollyfills may come handy. Polyfills do not support all the new features,
+but they are trying to cope up. They try to replciate the new css feature by vanilla css and javascript.
+This can take load on browser  for loading it parsing it, executing ite etc.
+
+Eliminate cross browser inconsistencies:
+-----------------------------------------
+You can use normalise.css to remove default setting of every browser, you can use normalize.css for this. But this also has a con
+where loading the entire third-party css package for it. 
+
+choosing css class codes correctly:
+-----------------------------------
+USe kebab case for css classes, that is seperating each word by hyphen. css is case sensitive.
+
+BEM:
+----
+Block Elment modifier style is an enforcement or convention in naming the css classes.. so that there would be fewer naming
+collisions and thus way fewer undesired overriding css.
+So in this  convention, you pick out the block element or parent element and you would nest down into its children (or Element/s)
+sepearated by underscore and if at all you have a modifier on those elements then you seperate them with 2 hyphens.
+
+for example to style a item in  a container, you might write somethign like this
+.container_item {
+
+}
+
+to specialise a particular item style you might say..
+
+.container_item--top {
+
+}
+
+css class names convention:
+----------------------------
+When you name css class do not descibe what styles are going in like title-blue, instead mention what this style is mainly being
+used for like.. .main-title.
+
+SASS/SCSS:
+==========
 
 
 
